@@ -31,8 +31,9 @@ public class CompanyEmail {
         return subjectLine;
     }
     
-    public String emailMessage() {
-        return emailMessage();
+    public String emailMessage() { 
+        //return emailMessage(); //Liam - removed parenthesise
+    	return emailMessage;
     }
     
     public void setFrom(String fromAddr) {
