@@ -19,9 +19,16 @@ public class CompanyEmail {
         emailMessage = null;
     }
     
+//    public CompanyEmail(String fAddress, String tAddress, String subLine, String eMessage) { //Needs to check the validity of emails when setting fromAddress and toAddres - Tom.
+//    	fromAddress = fAddress;
+//    	toAddress = tAddress;
+//    	subjectLine = subLine;
+//    	emailMessage = eMessage;
+//    }
+    
     public CompanyEmail(String fAddress, String tAddress, String subLine, String eMessage) {
-    	fromAddress = fAddress;
-    	toAddress = tAddress;
+    	setFrom(fAddress); //Fixed constructor to use the setter methods to ensure email addresses are valid. Tom.
+    	setTo(tAddress);
     	subjectLine = subLine;
     	emailMessage = eMessage;
     }
@@ -43,10 +50,10 @@ public class CompanyEmail {
     	return emailMessage;
     }
     
-//    public void setFrom(String fromAddr) {  Original setFrom doesn't correctly vet email addresses.
+//    public void setFrom(String fromAddr) {  Original setFrom doesn't correctly vet email addresses. Tom.
 //        if (fromAddr.contains("@")) {
 //            fromAddress = fromAddr;
-//        }
+//        } // Isn't setting fromAddress to null if address is invalid. Tom.
 //    }
     
     public void setFrom(String fromAddr) {
@@ -55,6 +62,8 @@ public class CompanyEmail {
     	matcher = pattern.matcher(fromAddr);
     	if (matcher.matches()) {
     		fromAddress = fromAddr;
+    	} else { //Added else clause to set fromAddress to null if address is invalid. Tom.
+    		fromAddress = null;
     	}
     	
     }
@@ -62,13 +71,15 @@ public class CompanyEmail {
 //    public void setTo(String toAddr) { Same bad email address validation, fixed as above. Tom.
 //        if (toAddr.contains("@")) {
 //            toAddress = toAddr;
-//        }
+//        } //Needs an else clause to set toAddress to null if address is invalid. Tom.
 //    }
     
     public void setTo(String toAddr) {
     	matcher = pattern.matcher(toAddr);
     	if (matcher.matches()) {
     		toAddress = toAddr;
+    	} else {
+    		toAddress = null;
     	}
     }
     

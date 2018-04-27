@@ -179,6 +179,17 @@ public class CompanyEmailTest {
 	}
 	
 	@Test
+	public void testSetFrom4() {
+		String valid = "valid@email.com";
+		String invalid = "invalid.com";
+		CompanyEmail test = new CompanyEmail();
+		test.setFrom(valid);
+		assertEquals("Should match valid email",valid,test.fromAddress());
+		test.setFrom(invalid);
+		assertNull("Should now be set to null",test.fromAddress());
+	}
+	
+	@Test
 	public void testSetTo() {
 		//first test checks set correctly updates ToAddress
 		String testEmail = "tom@email.com";
@@ -209,5 +220,16 @@ public class CompanyEmailTest {
 			test.setTo(email);
 			assertNull("Email address should be null",test.toAddress());
 		}
+	}
+	
+	@Test
+	public void testSetTo4() {
+		String valid = "valid@email.com";
+		String invalid = "invalid.com";
+		CompanyEmail test = new CompanyEmail();
+		test.setTo(valid);
+		assertEquals("Should match valid email",valid,test.toAddress());
+		test.setTo(invalid);
+		assertNull("Should now be set to null",test.toAddress());
 	}
 }
