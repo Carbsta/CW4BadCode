@@ -178,5 +178,36 @@ public class CompanyEmailTest {
 		}
 	}
 	
+	@Test
+	public void testSetTo() {
+		//first test checks set correctly updates ToAddress
+		String testEmail = "tom@email.com";
+		CompanyEmail test = new CompanyEmail();
+		test.setTo(testEmail);
+		assertEquals("Email address should match",testEmail,test.toAddress());
+	}
 	
+	@Test
+	public void testSetTo2() {
+		//test that setTo works with valid email addresses;
+		String[] valid = new String[] {"tom@yahoo.com", "tom-100@yahoo.com", "tom.100@yahoo.com","tom@1.com","tom@gmail.com.com","tom+100@gmail.com","tom111@tom.com","tom-100@tom.net","tom.100@tom.co.uk","tom-100@yahoo-test.com","tom_100@casesensitive-test.CoM"};
+		String testEmail;
+		CompanyEmail test = new CompanyEmail();
+		for(String email : valid) {
+			testEmail = email;
+			test.setTo(email);
+			assertEquals("Email address should match",testEmail,test.toAddress());
+		}
+	}
+	
+	@Test
+	public void testSetTo3() {
+		//test that setTo doesn't set if the email address is invalid;
+		String[] invalid = new String[] {"tom", "tom@.com.my", "tom@@gmail.com",".tom@yahoo.com","t*o()m@gmail.com","tom@*%(.com","tom..1999@gmail.com","tom.@yandex.com","tom@liam@jacob.com","tom@aol.com.1a"};
+		CompanyEmail test = new CompanyEmail();
+		for(String email : invalid) {
+			test.setTo(email);
+			assertNull("Email address should be null",test.toAddress());
+		}
+	}
 }

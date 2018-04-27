@@ -50,7 +50,7 @@ public class CompanyEmail {
 //    }
     
     public void setFrom(String fromAddr) {
-    	//New setFrom method written by Tom to use regex to correctly reject invalid emails addresses.
+    	//New setFrom method written by Tom to use regex to correctly reject invalid emails addresses. Tom.
     	//The regex expression was taken from https://www.journaldev.com/638/java-email-validation-regex by pankaj
     	matcher = pattern.matcher(fromAddr);
     	if (matcher.matches()) {
@@ -59,10 +59,17 @@ public class CompanyEmail {
     	
     }
     
+//    public void setTo(String toAddr) { Same bad email address validation, fixed as above. Tom.
+//        if (toAddr.contains("@")) {
+//            toAddress = toAddr;
+//        }
+//    }
+    
     public void setTo(String toAddr) {
-        if (toAddr.contains("@")) {
-            toAddress = toAddr;
-        }
+    	matcher = pattern.matcher(toAddr);
+    	if (matcher.matches()) {
+    		toAddress = toAddr;
+    	}
     }
     
     public void setSubject(String subLine) {
