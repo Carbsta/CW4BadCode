@@ -232,4 +232,12 @@ public class CompanyEmailTest {
 		test.setTo(invalid);
 		assertNull("Should now be set to null",test.toAddress());
 	}
+	
+	@Test
+	public void testSetSubject() {
+		String subject = "An email subject";
+		CompanyEmail test = new CompanyEmail();
+		test.setSubject(subject);
+		assertEquals("Subjects should match",subject,test.subjectLine());
+	}
 }
