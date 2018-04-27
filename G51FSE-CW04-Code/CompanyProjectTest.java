@@ -169,24 +169,4 @@ public class CompanyProjectTest {
 			assertEquals(cp.toString(), tstr[i++]);
 			
 		}
-}
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+}		
