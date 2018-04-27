@@ -33,11 +33,20 @@ public class CompanyProject {
         return PTitle;
     }
     
-    public void setPTitle(String pTitle) {
+    /*public void setPTitle(String pTitle) {
     	if (pTitle.length() > 10 ) {
     		PTitle = pTitle;
     	}
+    }*/
+    //edited by Audrey
+    public String setPTitle(String pTitle) {
+    	if (pTitle.length() < 11 ) {
+    		System.out.println("Project title should be 10 or more characters");
+    		return PTitle;
+    	}
+    	return PTitle = pTitle;
     }
+    
     
     public boolean isContact(String emailAddress) {
         return ProjectContacts.contains(emailAddress);
