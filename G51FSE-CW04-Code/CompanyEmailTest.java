@@ -141,4 +141,42 @@ public class CompanyEmailTest {
 	}
 		
 
+	
+//-----------Tom's Tests---------------------------------------
+	
+	@Test
+	public void testSetFrom1() {
+		//first test checks set correctly updates FromAddress
+		String testEmail = "tom@email.com";
+		CompanyEmail test = new CompanyEmail();
+		test.setFrom(testEmail);
+		assertEquals("Email address should match",testEmail,test.fromAddress());
+	}
+	
+	@Test
+	public void testSetFrom2() {
+		//test that setFrom works with valid email addresses;
+		String[] valid = new String[] {"tom@yahoo.com", "tom-100@yahoo.com", "tom.100@yahoo.com","tom@1.com","tom@gmail.com.com","tom+100@gmail.com","tom111@tom.com","tom-100@tom.net","tom.100@tom.co.uk","tom-100@yahoo-test.com","tom_100@casesensitive-test.CoM"};
+		String testEmail;
+		CompanyEmail test = new CompanyEmail();
+		for(String email : valid) {
+			testEmail = email;
+			test.setFrom(email);
+			assertEquals("Email address should match",testEmail,test.fromAddress());
+		}
+	}
+	
+	@Test
+	public void testSetFrom3() {
+		//test that setFrom doesn't set if the email address is invalid;
+		String[] invalid = new String[] {"tom", "tom@.com.my", "tom@@gmail.com",".tom@yahoo.com","t*o()m@gmail.com","tom@*%(.com","tom..1999@gmail.com","tom.@yandex.com","tom@liam@jacob.com","tom@aol.com.1a"};
+		String testEmail;
+		CompanyEmail test = new CompanyEmail();
+		for(String email : invalid) {
+			test.setFrom(email);
+			assertNull("Email address should be null",test.fromAddress());
+		}
+	}
+	
+	
 }
