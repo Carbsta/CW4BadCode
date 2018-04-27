@@ -85,7 +85,8 @@ public class CompanyProject {
     }
     
     public String getPhaseByName() {
-        return CompanyEmailSystem.ProjectPhases[ProjectPhase];
+        //return CompanyEmailSystem.ProjectPhases[ProjectPhase];
+    	return CompanyEmailSystem.ProjectPhases[ProjectPhase - 1]; //String array starts at 0 where as the project phase starts at 1 - Jacob
     }
     
     public int getPhaseByID() {
