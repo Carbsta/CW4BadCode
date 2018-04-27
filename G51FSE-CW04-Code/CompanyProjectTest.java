@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class CompanyProjectTest {
@@ -7,7 +9,12 @@ public class CompanyProjectTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		CompanyProject cp = new CompanyProject("New Long Name");
+		assertNotNull(cp.getPTitle());
+		assertEquals(1, cp.getPID());
+		CompanyProject cp2 = new CompanyProject();
+		assertEquals(2, cp2.getPID());
+		System.out.println(cp2.getPTitle());
 	}
 
 }
