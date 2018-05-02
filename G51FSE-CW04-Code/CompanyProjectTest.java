@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class CompanyProjectTest {
 	//Tests by Chris, Audrey and Jacob
-
+/*
 	@Test
 	public void test3() {
 		CompanyProject three = new CompanyProject();
@@ -45,11 +45,24 @@ public class CompanyProjectTest {
 		CompanyProject cp2 = new CompanyProject();
 		assertEquals(2, cp2.getPID());
 		System.out.println(cp2.getPTitle());
-	} 
+	} */
 	
 	// Jacob's Tests
 	//===== Next Phase Function tests ======
-		//2.11.1 Returns true when Project Phase correctly incremented and doesn't 
+		
+	
+	//===== Constructor tests ======
+			//2.1.1
+			
+			@Test
+			public void testProjectConPID() {
+				CompanyProject firstcp = new CompanyProject();
+				CompanyProject secondcp = new CompanyProject();
+				assertEquals(firstcp.getPID(), 7);
+				assertEquals(secondcp.getPID(), 8);
+			}
+	
+	    //2.11.1 Returns true when Project Phase correctly incremented and doesn't 
 		
 		@Test
 		public void testNPTrue() {
@@ -169,4 +182,7 @@ public class CompanyProjectTest {
 			assertEquals(cp.toString(), tstr[i++]);
 			
 		}
+		
+		
+		
 }		

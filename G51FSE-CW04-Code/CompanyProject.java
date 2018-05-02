@@ -41,7 +41,7 @@ public class CompanyProject {
     //edited by Audrey
     public String setPTitle(String pTitle) {
     	if (pTitle.length() < 11 ) {
-    		System.out.println("Project title should be 10 or more characters");
+    		//System.out.println("Project title should be 10 or more characters");
     		return PTitle;
     	}
     	return PTitle = pTitle;
@@ -86,7 +86,8 @@ public class CompanyProject {
     
     public String getPhaseByName() {
         //return CompanyEmailSystem.ProjectPhases[ProjectPhase];
-    	return CompanyEmailSystem.ProjectPhases[ProjectPhase - 1]; //String array starts at 0 where as the project phase starts at 1 - Jacob
+    	return CompanyEmailSystem.ProjectPhases[ProjectPhase - 1]; 
+    	//String array starts at 0 where as the project phase starts at 1 - Jacob
     }
     
     public int getPhaseByID() {
