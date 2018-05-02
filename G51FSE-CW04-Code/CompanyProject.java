@@ -39,12 +39,12 @@ public class CompanyProject {
     	}
     }*/
     //edited by Audrey
-    public String setPTitle(String pTitle) {
-    	if (pTitle.length() < 11 ) {
+    public void setPTitle(String pTitle) {
+    	if (pTitle.length() >= 10 ) {
     		//System.out.println("Project title should be 10 or more characters");
-    		return PTitle;
+    		PTitle = pTitle;
     	}
-    	return PTitle = pTitle;
+    	
     }
     
     

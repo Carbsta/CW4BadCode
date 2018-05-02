@@ -100,13 +100,7 @@ public class CompanyProjectTest {
 	//===== Constructor tests ======
 			//2.1.1
 			
-			@Test
-			public void testProjectConPID() {
-				CompanyProject firstcp = new CompanyProject();
-				CompanyProject secondcp = new CompanyProject();
-				assertEquals(firstcp.getPID(), 7);
-				assertEquals(secondcp.getPID(), 8);
-			}
+			
 	
 	    //2.11.1 Returns true when Project Phase correctly incremented and doesn't 
 		
@@ -156,6 +150,8 @@ public class CompanyProjectTest {
 				cp.nextPhase();
 			}
 			
+			
+			
 		}
 		
 		//===== Get Phase ID Function tests ======
@@ -183,6 +179,7 @@ public class CompanyProjectTest {
 			ArrayList<String> empty = new ArrayList<String>();
 			
 			assertEquals(cp.getProjectContacts(), empty);
+			
 		}
 		
 		//2.14.2
@@ -197,9 +194,11 @@ public class CompanyProjectTest {
 			cp.addContact("gota@gmail.com");
 			
 			assertEquals(cp.getProjectContacts(), some);
+			
+			
 		}
 		
-		//===== Get Project Contacts Function tests ======
+		//===== Project toString Function tests ======
 		//2.15.1
 				
 		@Test
@@ -207,6 +206,8 @@ public class CompanyProjectTest {
 			CompanyProject cp = new CompanyProject();
 			String tstr = "New Project [Feasibility]";
 			assertEquals(cp.toString(), tstr);
+			
+			
 			
 		}
 		
@@ -227,8 +228,54 @@ public class CompanyProjectTest {
 			
 			assertEquals(cp.toString(), tstr[i++]);
 			
+			
+			
 		}
+		
+		//===== Project Construction tests ======
+		//2.1.1
+		@Test
+		public void testProjectConPID() {
+			CompanyProject cp = new CompanyProject();
+			CompanyProject nextcp = new CompanyProject();
+			
+			ArrayList<String> empty = new ArrayList<String>();
+			
+			int tpid = cp.getPID();
+			assertEquals(nextcp.getPID(), ++tpid);
+			assertEquals(cp.getPTitle(), "New Project");
+			assertEquals(cp.getProjectContacts(), empty);
+			assertEquals(cp.getPhaseByID(), 1);
+			assertEquals(cp.getEmailsForPhase(), empty);
+		} 
+		
+		
+		//2.2.1
+		public void testProjectConSetTit() {
+			CompanyProject cp = new CompanyProject("This Is A New Project");
+			assertEquals(cp.getPhaseByName(), "This Is A New Project");
+			}
+		
 		
 		
 		
 }		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

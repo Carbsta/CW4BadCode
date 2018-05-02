@@ -5,17 +5,12 @@ public class CompanyEmailSystem {
 	public static int GlobalProjectCounter;
 	public static String[] ProjectPhases = new String[]{"Feasibility","Design","Implementation","Testing","Deployment","Completed"};
 	
-    private ArrayList<CompanyProject> AllProjects;
-    private int currentProjShowing;
+    private static ArrayList<CompanyProject> AllProjects;
+    private static int currentProjShowing;
     
     public static void main(String[] args) {
-    	
-    	new CompanyEmailSystem();
-    	
-    }
-    	
-    public CompanyEmailSystem() { 
-  ///////
+        
+        ///////
         //Startup
         //////
         GlobalProjectCounter = 0;
@@ -98,9 +93,10 @@ public class CompanyEmailSystem {
             }
         }
         in.close();
+        
     }
     
-    private void ListProjects(){
+    private static void ListProjects(){
         for (int x = 0; x < AllProjects.size(); x++) {
             CompanyProject cp = AllProjects.get(x);
             int emailCount = cp.getEmailsForPhase().size();
@@ -108,7 +104,7 @@ public class CompanyEmailSystem {
         }
     }
     
-    private void AddProject(Scanner in) {
+    private static void AddProject(Scanner in) {
         System.out.println("What is the title of the project?");
         in.nextLine(); // to remove read-in bug
         String title = in.nextLine();
@@ -116,7 +112,7 @@ public class CompanyEmailSystem {
         System.out.println("[Project added]");
     }
     
-    private void ListEmails(int phaseToShow) {
+    private static void ListEmails(int phaseToShow) {
         CompanyProject cp = AllProjects.get(currentProjShowing);
         ArrayList<CompanyEmail> projectPhaseEmails = null;
         if (phaseToShow==0) {
@@ -141,14 +137,14 @@ public class CompanyEmailSystem {
         }
     }
     
-    private void ListPhases() {
+    private static void ListPhases() {
         CompanyProject cp = AllProjects.get(currentProjShowing);
         for (int x=0; x < cp.getPhaseByID(); x++ ) {
             System.out.println((x+1)+") "+cp.getPhaseByName()+" - "+cp.getEmailsForPhase(x).size()+" Emails");
         }
     }
     
-    private void ListContacts() {
+    private static void ListContacts() {
         CompanyProject cp = AllProjects.get(currentProjShowing);
         ArrayList<String> projectContacts = cp.getProjectContacts();
         for (int x=0; x < projectContacts.size(); x++ ) {
@@ -156,7 +152,7 @@ public class CompanyEmailSystem {
         }
     }
     
-    private void AddEmail(Scanner in) {
+    private static void AddEmail(Scanner in) {
         System.out.println("Which email address is it from?");
         in.nextLine(); //to remove read-in bug
         String fromAddress = in.nextLine();
@@ -172,7 +168,7 @@ public class CompanyEmailSystem {
         System.out.println("[Email added to " + cp.toString() + "]");
     }
     
-    private void ChangeProjectPhase() {
+    private static void ChangeProjectPhase() {
         CompanyProject cp = AllProjects.get(currentProjShowing);
         if (cp.nextPhase()) {
             System.out.println("[Phase changed: " + cp.toString());
