@@ -6,6 +6,7 @@ import org.junit.Test;
 
 public class CompanyProjectTest {
 	//Tests by Chris, Audrey and Jacob
+
 	
 	@Test
 	public void testdef1() {//tests not in order so PID is not expected no.
@@ -57,7 +58,7 @@ public class CompanyProjectTest {
 		CompanyProject cp2 = new CompanyProject();
 		assertEquals(2, cp2.getPID());
 		System.out.println(cp2.getPTitle());
-	} */
+	} 
 	
 	//Chris test start
 		@Test
@@ -268,7 +269,7 @@ public class CompanyProjectTest {
 			assertEquals(cp.getPhaseByName(), "This Is A New Project");
 			}
 		
-		
+		// Test for adding title when it is 10 and it should fail because I edited the function
 		
 		
 }		

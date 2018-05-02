@@ -33,7 +33,8 @@ public class CompanyProject {
         return PTitle;
     }
     
-    //edited by Audrey
+
+    //edited by Audrey and Jacob
     public void setPTitle(String pTitle) {
     	if (pTitle.length() >= 10 ) {
     		//System.out.println("Project title should be 10 or more characters");
