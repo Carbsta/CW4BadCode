@@ -88,7 +88,8 @@ public class CompanyEmailTest {
 		CompanyEmail fe = new CompanyEmail(null, "tom@mail.com", "look at this", "its a dog");
 		assertNull("fromAddress should be null", fe.fromAddress());
 	} *///changing the CompanyEmail class to verify email addresses with regex now causes Liam's test to throw a null pointer exception. - Tom.
-	//Rewrote this test below, replacing null with a wrong email address should cause the address to be set to null.
+	
+	//Rewrote this test below, replacing null with a wrong email address should cause the address to be set to null. - Tom.
 	@Test
 	public void testfromAddressnull() { //modified test after changes to default constructor - Tom.
 		CompanyEmail fe = new CompanyEmail("Not an email address", "tom@mail.com", "look at this", "its a dog");
@@ -155,9 +156,9 @@ public class CompanyEmailTest {
 		assertNull("emailMessage should be null", em.emailMessage());
 	}
 		
-//-----------End of Liam's tests-------------------------------
+//-----------End of Liam's tests-------------------------------------------------------------------------------------------------
 	
-//-----------Tom's Tests---------------------------------------
+//-----------Tom's Tests---------------------------------------------------------------------------------------------------------
 	
 	@Test
 	public void testSetFrom1() {
@@ -185,7 +186,6 @@ public class CompanyEmailTest {
 	public void testSetFrom3() {
 		//test that setFrom doesn't set if the email address is invalid;
 		String[] invalid = new String[] {"tom", "tom@.com.my", "tom@@gmail.com",".tom@yahoo.com","t*o()m@gmail.com","tom@*%(.com","tom..1999@gmail.com","tom.@yandex.com","tom@liam@jacob.com","tom@aol.com.1a"};
-		String testEmail;
 		CompanyEmail test = new CompanyEmail();
 		for(String email : invalid) {
 			test.setFrom(email);
@@ -277,4 +277,26 @@ public class CompanyEmailTest {
 		test.setMessage("a body");
 		assertTrue("Email should pass",test.isValid());
 	}
+	
+	@Test
+	public void testToString1() {
+		CompanyEmail test = new CompanyEmail();
+		assertEquals("email with no subject should return placeholder","[no subject]",test.toString());
+	}
+	
+	@Test
+	public void testToString2() {
+		CompanyEmail test = new CompanyEmail();
+		test.setSubject("");
+		assertEquals("email with empty string as a subject should return placeholder","[no subject]",test.toString());
+	}
+	
+	@Test
+	public void testToString3() {
+		CompanyEmail test = new CompanyEmail();
+		test.setSubject("test subject");
+		assertEquals("toString should match subject","test subject",test.toString());
+	}
+	
+//------------------ End of Tom's tests ------------------------------------------
 }

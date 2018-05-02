@@ -101,7 +101,7 @@ public class CompanyEmail {
     }
     
     public String toString() {
-    	if (subjectLine.equals("")) {
+    	if ((subjectLine == null)||(subjectLine.equals(""))) { //added a condition with or to first check the subjectLine is null. Tom.
     		return "[no subject]";
     	} else {
     		return subjectLine;
