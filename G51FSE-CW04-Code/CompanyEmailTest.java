@@ -5,6 +5,9 @@ import org.junit.Test;
 public class CompanyEmailTest {
 	//tests by Tom and Liam
 
+	
+//--------------------------------------------Liam's tests below:-------------------------------------
+	
 	@Test
 	public void testCompanyEmailDC() {
 		CompanyEmail ce = new CompanyEmail();
@@ -80,11 +83,18 @@ public class CompanyEmailTest {
 		assertEquals("fromAddress should be liam@mail.com", "liam@mail.com", fe.fromAddress());
 	} */
 	
-	@Test
+	/*@Test
 	public void testfromAddressnull() {
 		CompanyEmail fe = new CompanyEmail(null, "tom@mail.com", "look at this", "its a dog");
 		assertNull("fromAddress should be null", fe.fromAddress());
-	}
+	} *///changing the CompanyEmail class to verify email addresses with regex now causes Liam's test to throw a null pointer exception. - Tom.
+	//Rewrote this test below, replacing null with a wrong email address should cause the address to be set to null.
+	@Test
+	public void testfromAddressnull() { //modified test after changes to default constructor - Tom.
+		CompanyEmail fe = new CompanyEmail("Not an email address", "tom@mail.com", "look at this", "its a dog");
+		assertNull("fromAddress should be null", fe.fromAddress());
+	} 
+	
 	
 	@Test
 	public void testtoAddressstr() {
@@ -98,9 +108,14 @@ public class CompanyEmailTest {
 		assertEquals("toAddress should be tom@mail.com", "tom@mail.com", te.toAddress());
 	} */
 	
-	@Test
+	/*@Test
 	public void testtoAddressnull() {
 		CompanyEmail te = new CompanyEmail("liam@mail.com", null, "look at this", "its a dog");
+		assertNull("toAddress should be null", te.toAddress());
+	}*/
+	@Test
+	public void testtoAddressnull() { // as above, modified test after changes to the default constructor - Tom.
+		CompanyEmail te = new CompanyEmail("liam@mail.com", "not an email address", "look at this", "its a dog");
 		assertNull("toAddress should be null", te.toAddress());
 	}
 	
@@ -140,7 +155,7 @@ public class CompanyEmailTest {
 		assertNull("emailMessage should be null", em.emailMessage());
 	}
 		
-
+//-----------End of Liam's tests-------------------------------
 	
 //-----------Tom's Tests---------------------------------------
 	
@@ -239,5 +254,27 @@ public class CompanyEmailTest {
 		CompanyEmail test = new CompanyEmail();
 		test.setSubject(subject);
 		assertEquals("Subjects should match",subject,test.subjectLine());
+	}
+	
+	@Test
+	public void testSetMessage() {
+		String body = "An email body";
+		CompanyEmail test = new CompanyEmail();
+		test.setMessage(body);
+		assertEquals("messages should match",body,test.emailMessage());
+	}
+	
+	@Test
+	public void testIsValid() {
+		CompanyEmail test = new CompanyEmail();
+		assertFalse("Email should fail",test.isValid());
+		test.setTo("valid.email@email.com");
+		assertFalse("Email should fail",test.isValid());
+		test.setFrom("also.valid@email.com");
+		assertFalse("Email should fail",test.isValid());
+		test.setSubject("a subject line");
+		assertFalse("Email should fail",test.isValid());
+		test.setMessage("a body");
+		assertTrue("Email should pass",test.isValid());
 	}
 }
