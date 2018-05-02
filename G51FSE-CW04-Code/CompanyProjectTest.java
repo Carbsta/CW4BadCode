@@ -6,9 +6,15 @@ import org.junit.Test;
 
 public class CompanyProjectTest {
 	//Tests by Chris, Audrey and Jacob
-/*
+	
 	@Test
-	public void test3() {
+	public void testdef1() {//tests not in order so PID is not expected no.
+		CompanyProject one = new CompanyProject();
+		assertEquals(1, one.getPID());
+	}
+
+	@Test
+	public void test3() {//ask about the PID and tests not in order
 		CompanyProject three = new CompanyProject();
 		
 		assertEquals(1,three.getPID());
@@ -29,11 +35,17 @@ public class CompanyProjectTest {
 	@Test
 	public void test5() {
 		CompanyProject five = new CompanyProject();
-		
-		String name = five.setPTitle("abcd");
+		String name = "abcd";
+		five.setPTitle("abcd");
 		assertEquals("New Project", name);
-		String name1 = five.setPTitle("NewProjectName");
-		assertEquals("NewProjectName", name);
+	}
+	
+	@Test
+	public void testfive() {
+		CompanyProject five1 = new CompanyProject();
+		String name1 = "NewProjectName";
+		five1.setPTitle("NewProjectName");
+		assertEquals("NewProjectName", name1);
 		
 	}
 
