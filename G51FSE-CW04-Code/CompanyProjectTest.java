@@ -47,6 +47,52 @@ public class CompanyProjectTest {
 		System.out.println(cp2.getPTitle());
 	} */
 	
+	//Chris test start
+		@Test
+		public void testIsContact() {
+			CompanyProject test6 = new CompanyProject();
+			String example = "123@gmail.com";
+			boolean result = test6.isContact("123@gmail.com");
+			assertNotNull(example, result);
+		}
+
+		@Test
+		public void testAddContact() {
+			CompanyProject test7 = new CompanyProject();
+			String example = "1234@gmail.com";
+			boolean result = test7.addContact(example);
+			assertNotNull(example,result);
+		}
+
+		@Test
+		public void testAddEmail() {
+			CompanyProject test8 = new CompanyProject();
+			CompanyEmail ce = new CompanyEmail("21@gmail.com", "12@gmail.com", "this is a test subject for email", "this is a test message for email ");
+			test8.addEmail(ce);
+//			assertNull(example,result);
+			
+			assertEquals(test8.isContact("12@gmail.com"), true);
+		}
+
+		@Test
+		public void testGetEmailsForPhase() {
+		CompanyProject test9 = new CompanyProject();
+		ArrayList<CompanyEmail> A1 = test9.getEmailsForPhase();
+		System.out.println(A1);
+		assertNotNull(A1);
+		}
+
+		@Test
+		public void testGetEmailsForPhaseInt() {
+		CompanyProject test10 = new CompanyProject();
+		ArrayList<CompanyEmail> B2 = test10.getEmailsForPhase();
+		System.out.println(B2);
+		assertNotNull(B2);
+		}
+	//Chris test end
+	
+	
+	
 	// Jacob's Tests
 	//===== Next Phase Function tests ======
 		
