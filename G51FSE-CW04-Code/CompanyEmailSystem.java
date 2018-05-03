@@ -8,6 +8,10 @@ public class CompanyEmailSystem {
     private static ArrayList<CompanyProject> AllProjects;
     private static int currentProjShowing;
     
+    //Created constants to ensure menu always displayed the same - Liam and Tom
+    private final String mainMenu = "What do you want to do?\nP = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it";
+    private final String projectMenu = "What do you want to do?\n L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project";
+    
     public static void main(String[] args) {
 
     	//Moved the content of main into constructor for JUnit testing
@@ -16,7 +20,7 @@ public class CompanyEmailSystem {
     	
     }
     
-    //Test Method to return private variables Liam and Tom
+    //Test Method to return private variables - Liam and Tom
     public static int getCurrentProjShow() {
     	return currentProjShowing;
     }
@@ -58,7 +62,7 @@ public class CompanyEmailSystem {
 
         /// END OF TEST DATA ///
         										//   V Removed Space (because test highlighted unnecessary) -LIAM
-        System.out.println("What do you want to do?\nP = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it");
+        System.out.println(mainMenu);
         Scanner in = new Scanner(System.in);
         while (in.hasNextLine()){
             String s = in.next();
@@ -71,8 +75,10 @@ public class CompanyEmailSystem {
                     } else if (s.equals("X")) {
                         System.out.println("Goodbye!");
                         break;
-                    } else if (Integer.parseInt(s) != -1 ) {
-                        currentProjShowing = Integer.parseInt(s)-1;
+                        		//(Integer.parseInt(s) != -1) -- This allows numbers less than -1 to be entered and numbers over the project counter to be entered. Liam and Tom.
+                    } else if (Integer.parseInt(s) <= GlobalProjectCounter && Integer.parseInt(s) > 0 ) { //New condition -- Liam and Tom.
+                    	//currentProjShowing = Integer.parseInt(s)-1; This causes the 1st project to never be accessible. Tom and Liam.
+                        currentProjShowing = Integer.parseInt(s);
                     } else {
                         System.out.println("Command not recognised");
                     }
@@ -98,17 +104,17 @@ public class CompanyEmailSystem {
             } catch (Exception e) {
                 System.out.println("Something went wrong: " + e.toString() + "\n");
             }
-            if(currentProjShowing == 0) {
-                System.out.println("What do you want to do?\n P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it Software");
-            } else {
-                System.out.println("What do you want to do?\n L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project");
+            if(currentProjShowing == 0) {					
+                System.out.println(mainMenu);	//Removed word Software and Space Character - Liam and Tom
+            } else {							//Using constants for consistency - Liam and Tom
+                System.out.println(projectMenu);
             }
         }
         in.close();
         
     }
     
-    private static void ListProjects(){
+    public void ListProjects(){
         for (int x = 0; x < AllProjects.size(); x++) {
             CompanyProject cp = AllProjects.get(x);
             int emailCount = cp.getEmailsForPhase().size();
@@ -116,7 +122,7 @@ public class CompanyEmailSystem {
         }
     }
     
-    private static void AddProject(Scanner in) {
+    public void AddProject(Scanner in) {
         System.out.println("What is the title of the project?");
         in.nextLine(); // to remove read-in bug
         String title = in.nextLine();
@@ -124,7 +130,7 @@ public class CompanyEmailSystem {
         System.out.println("[Project added]");
     }
     
-    private static void ListEmails(int phaseToShow) {
+    public void ListEmails(int phaseToShow) {
         CompanyProject cp = AllProjects.get(currentProjShowing);
         ArrayList<CompanyEmail> projectPhaseEmails = null;
         if (phaseToShow==0) {
@@ -149,14 +155,14 @@ public class CompanyEmailSystem {
         }
     }
     
-    private static void ListPhases() {
+    public void ListPhases() {
         CompanyProject cp = AllProjects.get(currentProjShowing);
         for (int x=0; x < cp.getPhaseByID(); x++ ) {
             System.out.println((x+1)+") "+cp.getPhaseByName()+" - "+cp.getEmailsForPhase(x).size()+" Emails");
         } 
     }
     
-    private static void ListContacts() {
+    public void ListContacts() {
         CompanyProject cp = AllProjects.get(currentProjShowing);
         ArrayList<String> projectContacts = cp.getProjectContacts();
         for (int x=0; x < projectContacts.size(); x++ ) {
@@ -164,7 +170,7 @@ public class CompanyEmailSystem {
         }
     }
     
-    private static void AddEmail(Scanner in) {
+    public void AddEmail(Scanner in) {
         System.out.println("Which email address is it from?");
         in.nextLine(); //to remove read-in bug
         String fromAddress = in.nextLine();
@@ -180,7 +186,7 @@ public class CompanyEmailSystem {
         System.out.println("[Email added to " + cp.toString() + "]");
     }
     
-    private static void ChangeProjectPhase() {
+    public void ChangeProjectPhase() {
         CompanyProject cp = AllProjects.get(currentProjShowing);
         if (cp.nextPhase()) {
             System.out.println("[Phase changed: " + cp.toString());

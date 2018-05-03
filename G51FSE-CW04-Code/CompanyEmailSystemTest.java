@@ -14,7 +14,7 @@ public class CompanyEmailSystemTest {
 
 		//Company Email Systems Tests - Paired Coding - Liam and Tom
 		
-		private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		
 		private final String mainMenuString = "What do you want to do?\nP = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it";
 		private final String projectMenuString = "What do you want to do?\n L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project";
@@ -33,12 +33,12 @@ public class CompanyEmailSystemTest {
 		 }
 		
 		@Test
-		 public void testUponStartCurProShow() { 
+		 public void testInitialCurrentProjectShow() { 
 			assertEquals(0, CompanyEmailSystem.getCurrentProjShow());
 		}
 		
 		@Test
-		 public void testOfferMenuOnStartUp() {	//Escapes with input X -LIAM and Tom
+		 public void testOfferMenuOnStartUp() {	//Escapes with input X
 			String input = "X";
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
@@ -48,14 +48,28 @@ public class CompanyEmailSystemTest {
 		 }
 		
 		@Test
-		 public void testPressNUM1OnOptions() { //Enters 1, escapes with X, escapes with X
-			String input = "2\nX\nX";
+		 public void testPressNUMOnOptions() { //Enters NUM, returns with X, escapes with X
+			int n;
+			for (n = 1; n <= CompanyEmailSystem.GlobalProjectCounter; n++) {
+				outContent = new ByteArrayOutputStream();
+				System.setOut(new PrintStream(outContent));
+				String input = n+nl+"X"+nl+"X";
+				InputStream in = new ByteArrayInputStream(input.getBytes());
+				System.setIn(in);
+				new CompanyEmailSystem();
+				assertEquals(mainMenuString+nl+projectMenuString+nl+mainMenuString+nl+gb+nl, outContent.toString());
+			}
+		}
+		
+		@Test
+		 public void testCurrentProjVar0OnExit() { //Escapes with input X
+			String input = "X";
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
 			new CompanyEmailSystem();
-			assertEquals(mainMenuString+nl+projectMenuString+nl+mainMenuString+nl+gb+nl, outContent.toString());
-			
+		    assertEquals(0, CompanyEmailSystem.getCurrentProjShow());
 		}
+<<<<<<< HEAD
 
 		 public void testMain() {
 			CompanyEmailSystem ces = new CompanyEmailSystem();
@@ -77,6 +91,23 @@ public class CompanyEmailSystemTest {
 		
 		
 
+=======
+		
+		@Test
+		 public void testCheckXToRightMenu() { //Enters NUM, either returns with X OR escapes with X
+			int n;
+			for (n = 1; n < CompanyEmailSystem.GlobalProjectCounter; n++) {
+				outContent = new ByteArrayOutputStream();
+				System.setOut(new PrintStream(outContent));
+				String input = n+nl+"X"+nl+"X";
+				InputStream in = new ByteArrayInputStream(input.getBytes());
+				System.setIn(in);
+				new CompanyEmailSystem();
+				assertEquals(mainMenuString+nl+projectMenuString+nl+mainMenuString+nl+gb+nl, outContent.toString());
+			}
+		}
+		
+>>>>>>> Before Dinner update
 }
 
 
