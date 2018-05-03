@@ -53,8 +53,9 @@ public class CompanyEmailSystem {
                         System.out.println("Goodbye!");
                         break;
                         		//(Integer.parseInt(s) != -1) -- This allows numbers less than -1 to be entered and numbers over the project counter to be entered. Liam and Tom.
-                    } else if (Integer.parseInt(s) <= GlobalProjectCounter && Integer.parseInt(s) > 0 ) { //New condition -- Liam and Tom.
+                    } else if ((s.chars().allMatch(Character::isDigit)) && (Integer.parseInt(s) <= GlobalProjectCounter && Integer.parseInt(s) > 0 )) { //New condition -- Liam and Tom.
                     	//currentProjShowing = Integer.parseInt(s)-1; This causes the 1st project to never be accessible. Tom and Liam.
+                    	//Resolved Exception error, now checks input is numerical before trying to pass it as int - Liam.
                         currentProjShowing = Integer.parseInt(s);
                     } else {
                         System.out.println("Command not recognised");
@@ -72,7 +73,7 @@ public class CompanyEmailSystem {
                         ChangeProjectPhase();
                     } else if (s.equals("X")) {
                         currentProjShowing = 0;
-                    } else if (Integer.parseInt(s) != -1 ) {
+                    } else if ((s.chars().allMatch(Character::isDigit)) && Integer.parseInt(s) != -1 ) {
                         ListEmails(Integer.parseInt(s));
                     } else {
                         System.out.println("Command not recognised");

@@ -22,6 +22,7 @@ public class CompanyEmailSystemTest {
 		private final String gb = "Goodbye!";
 		private final String nl = System.lineSeparator();
 		private final String error = "Command not recognised";
+		private final String whatTitle = "What is the title of the project?";
 		
 		@Before
 		 public void setUpStreams() {
@@ -103,7 +104,7 @@ public class CompanyEmailSystemTest {
 		
 		@Test
 		 public void testCurrentProjVar0OnExit() { //Escapes with input X
-			String input = "X";
+			String input = "1\nX\nX";
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
 			new CompanyEmailSystem();
@@ -122,6 +123,41 @@ public class CompanyEmailSystemTest {
 		}
 
 
+		
+		@Test
+		 public void testSaysGoodbyeOnExit() {
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			String input = "X";
+			InputStream in = new ByteArrayInputStream(input.getBytes());
+			System.setIn(in);
+			new CompanyEmailSystem();
+			assertEquals(mainMenuString+nl+gb+nl, outContent.toString());
+		}
+		
+		@Test
+		 public void testInvalidInputMainMenu() {
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			String input = "B\nX";
+			InputStream in = new ByteArrayInputStream(input.getBytes());
+			System.setIn(in);
+			new CompanyEmailSystem();
+			assertEquals(mainMenuString+nl+error+nl+mainMenuString+nl+gb+nl, outContent.toString());
+		}
+		
+		@Test
+		 public void testInvalidInputReturnsRightMenu() {
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			String input = "B\nA\nTest\n1\nB\nX\nX";
+			InputStream in = new ByteArrayInputStream(input.getBytes());
+			System.setIn(in);
+			new CompanyEmailSystem();
+			assertEquals(mainMenuString+nl+error+nl+mainMenuString+nl+whatTitle+nl+"[Project added]"+nl+mainMenuString+nl+projectMenuString+nl+error+nl+projectMenuString+nl+mainMenuString+nl+gb+nl, outContent.toString());
+		}
+		
+		
 		
 // ========== Jacob started here ==========
 	
