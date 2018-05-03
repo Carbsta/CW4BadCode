@@ -9,13 +9,19 @@ public class CompanyProjectTest {
 
 	
 	@Test
-	public void testdef1() {//tests not in order so PID is not expected no.
+	public void testdef() {//tests not in order so PID is not expected no.
 		CompanyProject one = new CompanyProject();
-		assertEquals(1, one.getPID());
+		ArrayList<String> arr = new ArrayList<String>();
+		
+		//assertEquals(1, one.getPID());
+		assertEquals("New Project", one.getPTitle());
+		assertEquals(arr, one.getProjectContacts());
+		assertEquals(1, one.getPhaseByID());
+		assertEquals(arr, one.getEmailsForPhase());
 	}
 
 	@Test
-	public void test3() {//ask about the PID and tests not in order
+	public void testGetPID() {//ask about the PID and tests not in order
 		CompanyProject three = new CompanyProject();
 		
 		assertEquals(1,three.getPID());
@@ -26,7 +32,7 @@ public class CompanyProjectTest {
 	}
 	
 	@Test
-	public void test4() {
+	public void testGetPtitle() {
 		CompanyProject four = new CompanyProject();
 		
 		assertEquals("New Project", four.getPTitle());
@@ -34,23 +40,23 @@ public class CompanyProjectTest {
 	}
 	
 	@Test
-	public void test5() {
+	public void testSetPtitle() {//
 		CompanyProject five = new CompanyProject();
 		String name = "abcd";
 		five.setPTitle("abcd");
-		assertEquals("New Project", name);
+		assertEquals("New Project", five.getPTitle());
 	}
 	
 	@Test
-	public void testfive() {
+	public void testSetPtitle2() {
 		CompanyProject five1 = new CompanyProject();
 		String name1 = "NewProjectName";
 		five1.setPTitle("NewProjectName");
-		assertEquals("NewProjectName", name1);
+		assertEquals("NewProjectName", five1.getPTitle());
 		
 	}
 
-	@Test
+	/*@Test
 	public void test() {
 		CompanyProject cp = new CompanyProject("New Long Name");
 		assertNotNull(cp.getPTitle());
@@ -58,7 +64,7 @@ public class CompanyProjectTest {
 		CompanyProject cp2 = new CompanyProject();
 		assertEquals(2, cp2.getPID());
 		System.out.println(cp2.getPTitle());
-	} 
+	} */
 	
 	//Chris test start
 		@Test
