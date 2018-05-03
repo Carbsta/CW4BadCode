@@ -10,11 +10,13 @@ public class CompanyProjectTest {
 	// ---- Audrey's tests start -----
 	
 	@Test
-	public void testdef() {//tests not in order so PID is not expected no.
+	public void testdef() {
 		CompanyProject one = new CompanyProject();
+		CompanyProject first = new CompanyProject();
 		ArrayList<String> arr = new ArrayList<String>();
 		
-		//assertEquals(1, one.getPID());
+		int defID = one.getPID();
+		assertEquals(first.getPID(), ++defID );
 		assertEquals("New Project", one.getPTitle());
 		assertEquals(arr, one.getProjectContacts());
 		assertEquals(1, one.getPhaseByID());
@@ -22,14 +24,12 @@ public class CompanyProjectTest {
 	}
 
 	@Test
-	public void testGetPID() {//ask about the PID and tests not in order
+	public void testGetPID() {
 		CompanyProject three = new CompanyProject();
+		CompanyProject third = new CompanyProject();
 		
-		assertEquals(1,three.getPID());
-		
-		CompanyProject clone1 = new CompanyProject();
-		CompanyProject clone2 = new CompanyProject();
-		assertEquals(3,three.getPID());
+		int testID = three.getPID();
+		assertEquals(third.getPID(), ++testID);
 	}
 	
 	@Test
