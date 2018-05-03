@@ -12,8 +12,10 @@ import org.junit.Test;
 
 public class CompanyEmailSystemTest {
 
-		//Company Email Systems Tests - Paired Coding - Liam and Tom
+	// tests sorted by the primary method they test
+	
 		
+		//Set up of variables for Liam and Tom's tests. Also Before and After setup. Paired coding Liam (Keyboard) Tom (Supervisor).
 
 		private ByteArrayOutputStream outContent; 
 		private CompanyEmailSystem testCES;
@@ -34,7 +36,7 @@ public class CompanyEmailSystemTest {
 			System.setIn(in);
 			testCES = new CompanyEmailSystem();
 			
-			///set up the test data. - Tom.
+			///set up the test data after being transplanted from CompanyEmailSystem. - Tom.
 	        
 	        CompanyProject cp1 = new CompanyProject(testCES,"Proj1");
 	        CompanyProject cp2 = new CompanyProject(testCES,"Proj2");
@@ -72,6 +74,8 @@ public class CompanyEmailSystemTest {
 			System.setOut(null);
 			System.setIn(null);
 		 }
+		
+	//Main/Constructor/Mainloop tests - Paired Coding - Liam and Tom
 	
 		@Test
 		 public void testInitialCurrentProjectShow() { 
@@ -131,9 +135,11 @@ public class CompanyEmailSystemTest {
 			String input = "X";
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
-			new CompanyEmailSystem();
+			testCES.mainLoop();
 			assertEquals(mainMenuString+nl+gb+nl, outContent.toString());
 		}
+		
+	//At this point Liam takes over solo as Tom has to assist/supervise elsewhere.
 		
 		@Test
 		 public void testInvalidInputMainMenu() {
@@ -142,7 +148,7 @@ public class CompanyEmailSystemTest {
 			String input = "B\nX";
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
-			new CompanyEmailSystem();
+			testCES.mainLoop();
 			assertEquals(mainMenuString+nl+error+nl+mainMenuString+nl+gb+nl, outContent.toString());
 		}
 		
@@ -153,7 +159,7 @@ public class CompanyEmailSystemTest {
 			String input = "B\nA\nTest\n1\nB\nX\nX";
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
-			new CompanyEmailSystem();
+			testCES.mainLoop();
 			assertEquals(mainMenuString+nl+error+nl+mainMenuString+nl+whatTitle+nl+"[Project added]"+nl+mainMenuString+nl+projectMenuString+nl+error+nl+projectMenuString+nl+mainMenuString+nl+gb+nl, outContent.toString());
 		}
 		

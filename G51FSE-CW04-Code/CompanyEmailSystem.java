@@ -14,7 +14,7 @@ public class CompanyEmailSystem {
     
     public static void main(String[] args) {
 
-    	//Moved the content of main into constructor for JUnit testing
+    	//Moved the content of main into constructor for JUnit testing - Tom.
     	
     	new CompanyEmailSystem();
     	
@@ -38,7 +38,7 @@ public class CompanyEmailSystem {
         AllProjects = new ArrayList<CompanyProject>();
         // Removed test data and put in our testing class - Tom.
         
-        // Call mainLoop to start the program. Also this allows to call it in testing without making a new CompanyEmailSystem.
+        // Call mainLoop to start the program. Also this allows to call it in testing without making a new CompanyEmailSystem. - Tom.
         mainLoop();
     }
     
@@ -109,7 +109,7 @@ public class CompanyEmailSystem {
         System.out.println("What is the title of the project?");
         in.nextLine(); // to remove read-in bug
         String title = in.nextLine();
-        AllProjects.add(new CompanyProject(this,title)); //Now passes a reference of this CompanyEmailSystem to the project.
+        AllProjects.add(new CompanyProject(this,title)); //Now passes a reference of this CompanyEmailSystem to the project. Tom and Jacob.
         System.out.println("[Project added]");
     }
     
