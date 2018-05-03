@@ -14,12 +14,11 @@ public class CompanyEmailSystemTest {
 
 
 		
-		private final ByteArrayOutputStream outContent = new
-				ByteArrayOutputStream();
+		private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		
 		@Before
 		 public void setUpStreams() {
-		 System.setOut(new PrintStream(outContent));
+			System.setOut(new PrintStream(outContent));
 		 }
 		
 		@After
@@ -29,9 +28,11 @@ public class CompanyEmailSystemTest {
 		
 		@Test
 		 public void testMain() {
-		 CompanyEmailSystem ces = new CompanyEmailSystem();
-		 ces.main(null);
-		 assertEquals("What do you want to do?\\n P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it",outContent.toString());
+		 new CompanyEmailSystem();
+		 String s = "X";
+		 InputStream in = new ByteArrayInputStream(s.getBytes());
+		 System.setIn(in);
+		 assertEquals("test","What do you want to do?\\n P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it"+System.lineSeparator(),outContent.toString());
 		 }
 
 }

@@ -9,8 +9,14 @@ public class CompanyEmailSystem {
     private static int currentProjShowing;
     
     public static void main(String[] args) {
-        
-        ///////
+
+    	
+    	new CompanyEmailSystem();
+    	
+    }
+    	
+    public CompanyEmailSystem() { 
+    	///////
         //Startup
         //////
         GlobalProjectCounter = 0;
