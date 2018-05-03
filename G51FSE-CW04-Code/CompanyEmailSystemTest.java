@@ -14,8 +14,9 @@ public class CompanyEmailSystemTest {
 
 		//Company Email Systems Tests - Paired Coding - Liam and Tom
 		
+
 		private ByteArrayOutputStream outContent; 
-		
+
 		private final String mainMenuString = "What do you want to do?\nP = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it";
 		private final String projectMenuString = "What do you want to do?\n L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project";
 		private final String gb = "Goodbye!";
@@ -70,7 +71,7 @@ public class CompanyEmailSystemTest {
 			System.setOut(null);
 			System.setIn(null);
 		 }
-		
+	
 		@Test
 		 public void testInitialCurrentProjectShow() { 
 			assertEquals(0, CompanyEmailSystem.getCurrentProjShow());
@@ -119,19 +120,51 @@ public class CompanyEmailSystemTest {
 			new CompanyEmailSystem();
 			assertEquals(mainMenuString+nl+error+nl+mainMenuString+nl+error+nl+mainMenuString+nl+error+nl+mainMenuString+nl+error+nl+mainMenuString+nl+error+nl+mainMenuString+nl+gb+nl, outContent.toString());
 		}
+
+
 		
 // ========== Jacob started here ==========
 	
 		//===== List Phase Function tests ======
-		//3.5.1
+		//3.6.1
 		
-		/*@Test
-		 public void testListedEmails() {
+
+		@Test
+		 public void testListedContacts() {
+			String input = "X";
+			InputStream in = new ByteArrayInputStream(input.getBytes());
+			System.setIn(in);
 			CompanyEmailSystem ces = new CompanyEmailSystem();
-			ces.ListPhases();
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			
+			String should = "1) me0@me.com\n" + "2) me3@me.com\n" + "3) me6@me.com\n" + "4) me9@me.com\n";
+			ces.ListContacts(0);
+			assertEquals(should,outContent.toString());
+
 		}
 		
 		
+		
+		
+		
+//		
+//		@Test
+//		 public void testNoContactsToList() {
+//			String input = "X";
+//			InputStream in = new ByteArrayInputStream(input.getBytes());
+//			System.setIn(in);
+//			CompanyEmailSystem ces = new CompanyEmailSystem();
+//			CompanyEmailSystem ced = new CompanyEmailSystem();
+//			
+//			outContent = new ByteArrayOutputStream();
+//			System.setOut(new PrintStream(outContent));
+//			
+//			String should = "";
+//			ces.ListContacts(1);
+//			assertEquals(should,outContent.toString());
+//		}
+//		
 
 
 		
@@ -147,7 +180,7 @@ public class CompanyEmailSystemTest {
 				new CompanyEmailSystem();
 				assertEquals(mainMenuString+nl+projectMenuString+nl+mainMenuString+nl+gb+nl, outContent.toString());
 			}
-		} */
+		}
 		
 } 
 

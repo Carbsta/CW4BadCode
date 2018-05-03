@@ -67,7 +67,7 @@ public class CompanyEmailSystem {
                     } else if (s.equals("F")) {
                         ListPhases();
                     } else if (s.equals("C")) {
-                        ListContacts();
+                        ListContacts(currentProjShowing); //Passes current project showing as ListContacts was changed to take an Int - Jacob
                     } else if (s.equals("N")) {
                         ChangeProjectPhase();
                     } else if (s.equals("X")) {
@@ -134,13 +134,17 @@ public class CompanyEmailSystem {
     
     public void ListPhases() {
         CompanyProject cp = AllProjects.get(currentProjShowing);
-        for (int x=0; x < cp.getPhaseByID(); x++ ) {
-            System.out.println((x+1)+") "+cp.getPhaseByName()+" - "+cp.getEmailsForPhase(x).size()+" Emails");
+        
+        for (int x=0; x < cp.getPhaseByID(); x++) {
+        	if(cp.getEmailsForPhase(x).size() == NULL
+)
+            System.out.println((x+1)+") "+cp.getPhaseByName()+" - "+cp.getEmailsForPhase().size()+" Emails");
         } 
     }
     
-    public void ListContacts() {
-        CompanyProject cp = AllProjects.get(currentProjShowing);
+
+    public void ListContacts(int projID) { // Takes an integer rather than global variable - Jacob
+        CompanyProject cp = AllProjects.get(projID);
         ArrayList<String> projectContacts = cp.getProjectContacts();
         for (int x=0; x < projectContacts.size(); x++ ) {
             System.out.println((x+1)+") "+projectContacts.get(x));
