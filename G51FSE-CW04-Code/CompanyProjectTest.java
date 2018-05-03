@@ -57,23 +57,23 @@ public class CompanyProjectTest {
 	//----- Audrey's tests end --------
 	
 	
-	//Chris test start
-//		@Test
-//		public void testIsContact() {
-//			CompanyProject test6 = new CompanyProject();
-//			String example = "123@gmail.com";
-//			boolean result = test6.isContact("123@gmail.com");
-//			assertNotNull(example, result);
-//		}
+//	Chris test start
+		@Test
+		public void testIsContact() {
+			CompanyProject test6 = new CompanyProject();
+			String example = "123@gmail.com";
+			boolean result = test6.isContact("123@gmail.com");
+			assertNotNull(example, result);
+		}
 
-//		@Test
-//		public void testAddContact() {
-//			CompanyProject test7 = new CompanyProject();
-//			String example = "1234@gmail.com";
-//			boolean result = test7.addContact(example);
-//			assertNotNull(example,result);
-//		}
-
+	@Test
+	public void testAddContact() {
+		CompanyProject test7 = new CompanyProject();
+		String example = "1234@gmail.com";
+		String result = test7.addContact(example);
+		System.out.println(example);
+		assertEquals(example,result);
+	}
 		@Test
 		public void testAddEmail() {
 			CompanyProject test8 = new CompanyProject();
@@ -83,22 +83,22 @@ public class CompanyProjectTest {
 			
 			assertEquals(test8.isContact("test@gmail.com"), false);
 		}
-//
-//		@Test
-//		public void testGetEmailsForPhase() {
-//		CompanyProject test9 = new CompanyProject();
-//		ArrayList<CompanyEmail> A1 = test9.getEmailsForPhase();
-//		System.out.println(A1);
-//		assertNotNull(A1);
-//		}
 
-//		@Test
-//		public void testGetEmailsForPhaseInt() {
-//		CompanyProject test10 = new CompanyProject();
-//		ArrayList<CompanyEmail> B2 = test10.getEmailsForPhase();
-//		System.out.println(B2);
-//		assertNotNull(B2);
-//		}
+		@Test
+		public void testGetEmailsForPhase() {
+		CompanyProject test9 = new CompanyProject();
+		ArrayList<CompanyEmail> A1 = test9.getEmailsForPhase();
+		System.out.println(A1);
+		assertNotNull(A1);
+		}
+
+		@Test
+		public void testGetEmailsForPhaseInt() {
+		CompanyProject test10 = new CompanyProject();
+		ArrayList<CompanyEmail> B2 = test10.getEmailsForPhase();
+		System.out.println(B2);
+		assertNotNull(B2);
+		}
 	//Chris test end
 	
 	
@@ -267,135 +267,135 @@ public class CompanyProjectTest {
 			}
 		
 		// Test for adding title when it is 10 and it should fail because I edited the function
-////			@Test
-////			public void testProjectConPID() {
-////				CompanyProject firstcp = new CompanyProject();
-////				CompanyProject secondcp = new CompanyProject();
-////				assertEquals(firstcp.getPID(), 7);
-////				assertEquals(secondcp.getPID(), 8);
-////			}
-////	
-////	    //2.11.1 Returns true when Project Phase correctly incremented and doesn't 
-////		
-////		@Test
-////		public void testNPTrue() {
-////			CompanyProject cp = new CompanyProject();
-////			if(CompanyEmailSystem.ProjectPhases.length > 1){
-////				assertTrue(cp.nextPhase());
-////			}
-////			else {
-////				fail("There is only one project phase, no next phase to change to.");
-////			}
-////				
-////		}
-////		
-////		//2.11.2 Returns false when the project phase 
-////		@Test
-////		public void testNPFalse() {
-////			int i = 1;
-////			CompanyProject cp = new CompanyProject();
-////			
-////			while (i++ < CompanyEmailSystem.ProjectPhases.length) {
-////				cp.nextPhase();
-////				
-////			}
-////			
-////			assertFalse(cp.nextPhase());
-////		
-////		}
-////		
-////		//===== Get Phase Name Function tests ======
-////		//2.12.1 
-////		
-////			
-////		@Test
-////		public void testPhaseNames() {
-////			CompanyProject cp = new CompanyProject();
-////			
-////			String[] projectNames = new String[]{"Feasibility","Design","Implementation","Testing","Deployment","Completed"};
-////			
-////			int i = 0;
-////			String pn;
-////			
-////			while(i < projectNames.length) {
-////				pn = projectNames[i++];
-////				assertEquals(cp.getPhaseByName(), pn);
-////				cp.nextPhase();
-////			}
-////			
-////		}
-////		
-////		//===== Get Phase ID Function tests ======
-////		//2.13.1
-////
-////		@Test
-////		public void testPhaseIDs() {
-////			CompanyProject cp = new CompanyProject();
-////			int i = 1;
-////			
-////			while(i < CompanyEmailSystem.ProjectPhases.length)
-////			{
-////				assertEquals(cp.getPhaseByID(), i++);
-////				cp.nextPhase();
-////			}
-////			
-////		}
-////		
-////		//===== Get Project Contacts Function tests ======
-////		//2.14.1
-////		
-////		@Test
-////		public void testEmptyContacts() {
-////			CompanyProject cp = new CompanyProject();
-////			ArrayList<String> empty = new ArrayList<String>();
-////			
-////			assertEquals(cp.getProjectContacts(), empty);
-////		}
-////		
-////		//2.14.2
-////		@Test
-////		public void testSomeContacts() {
-////			CompanyProject cp = new CompanyProject();
-////			ArrayList<String> some = new ArrayList<String>();
-////			
-////			some.add("jeed@gmail.com");
-////			cp.addContact("jeed@gmail.com");
-////			some.add("gota@gmail.com");
-////			cp.addContact("gota@gmail.com");
-////			
-////			assertEquals(cp.getProjectContacts(), some);
-////		}
-////		
-////		//===== Get Project Contacts Function tests ======
-////		//2.15.1
-////				
-////		@Test
-////		public void testNewTitleS() {
-////			CompanyProject cp = new CompanyProject();
-////			String tstr = "New Project [Feasibility]";
-////			assertEquals(cp.toString(), tstr);
-////			
-////		}
-////		
-////		//2.15.2
-////		@Test
-////		public void testNamedTitleS() {
-////			int i = 0;
-////			String[] tstr = new String[]{"Named Project [Feasibility]","Renamed Project [Feasibility]","Renamed Project [Design]"};
-////			CompanyProject cp = new CompanyProject("Named Project");
-////			
-////			assertEquals(cp.toString(), tstr[i++]);
-////			
-////			cp.setPTitle("Renamed Project");
-////			
-////			assertEquals(cp.toString(), tstr[i++]);
-////		
-////			cp.nextPhase();
-////			
-////			assertEquals(cp.toString(), tstr[i++]);
-////			
-////		}
-//		
+			@Test
+			public void testProjectConPID() {
+				CompanyProject firstcp = new CompanyProject();
+				CompanyProject secondcp = new CompanyProject();
+				assertEquals(firstcp.getPID(), 7);
+				assertEquals(secondcp.getPID(), 8);
+			}
+	
+	    //2.11.1 Returns true when Project Phase correctly incremented and doesn't 
+		
+		@Test
+		public void testNPTrue() {
+			CompanyProject cp = new CompanyProject();
+			if(CompanyEmailSystem.ProjectPhases.length > 1){
+				assertTrue(cp.nextPhase());
+			}
+			else {
+				fail("There is only one project phase, no next phase to change to.");
+			}
+				
+		}
+		
+		//2.11.2 Returns false when the project phase 
+		@Test
+		public void testNPFalse() {
+			int i = 1;
+			CompanyProject cp = new CompanyProject();
+			
+			while (i++ < CompanyEmailSystem.ProjectPhases.length) {
+				cp.nextPhase();
+				
+			}
+			
+			assertFalse(cp.nextPhase());
+		
+		}
+		
+		//===== Get Phase Name Function tests ======
+		//2.12.1 
+		
+			
+		@Test
+		public void testPhaseNames() {
+			CompanyProject cp = new CompanyProject();
+			
+			String[] projectNames = new String[]{"Feasibility","Design","Implementation","Testing","Deployment","Completed"};
+			
+			int i = 0;
+			String pn;
+			
+			while(i < projectNames.length) {
+				pn = projectNames[i++];
+				assertEquals(cp.getPhaseByName(), pn);
+				cp.nextPhase();
+			}
+			
+		}
+		
+		//===== Get Phase ID Function tests ======
+		//2.13.1
+
+		@Test
+		public void testPhaseIDs() {
+			CompanyProject cp = new CompanyProject();
+			int i = 1;
+			
+			while(i < CompanyEmailSystem.ProjectPhases.length)
+			{
+				assertEquals(cp.getPhaseByID(), i++);
+				cp.nextPhase();
+			}
+			
+		}
+		
+		//===== Get Project Contacts Function tests ======
+		//2.14.1
+		
+		@Test
+		public void testEmptyContacts() {
+			CompanyProject cp = new CompanyProject();
+			ArrayList<String> empty = new ArrayList<String>();
+			
+			assertEquals(cp.getProjectContacts(), empty);
+		}
+		
+		//2.14.2
+		@Test
+		public void testSomeContacts() {
+			CompanyProject cp = new CompanyProject();
+			ArrayList<String> some = new ArrayList<String>();
+			
+			some.add("jeed@gmail.com");
+			cp.addContact("jeed@gmail.com");
+			some.add("gota@gmail.com");
+			cp.addContact("gota@gmail.com");
+			
+			assertEquals(cp.getProjectContacts(), some);
+		}
+		
+		//===== Get Project Contacts Function tests ======
+		//2.15.1
+				
+		@Test
+		public void testNewTitleS() {
+			CompanyProject cp = new CompanyProject();
+			String tstr = "New Project [Feasibility]";
+			assertEquals(cp.toString(), tstr);
+			
+		}
+		
+		//2.15.2
+		@Test
+		public void testNamedTitleS() {
+			int i = 0;
+			String[] tstr = new String[]{"Named Project [Feasibility]","Renamed Project [Feasibility]","Renamed Project [Design]"};
+			CompanyProject cp = new CompanyProject("Named Project");
+			
+			assertEquals(cp.toString(), tstr[i++]);
+			
+			cp.setPTitle("Renamed Project");
+			
+			assertEquals(cp.toString(), tstr[i++]);
+		
+			cp.nextPhase();
+			
+			assertEquals(cp.toString(), tstr[i++]);
+			
+		}
+
 		
 		
 }		
