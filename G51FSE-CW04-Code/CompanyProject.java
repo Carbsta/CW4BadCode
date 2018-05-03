@@ -55,8 +55,8 @@ public class CompanyProject {
         return ProjectContacts.contains(emailAddress);
     }
     
-    public void addContact(String emailAddress) {
-        ProjectContacts.add(emailAddress);
+    public boolean addContact(String emailAddress) {
+        return ProjectContacts.add(emailAddress);
     }
     
     public void addEmail(CompanyEmail newEmail) {
