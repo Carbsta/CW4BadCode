@@ -25,42 +25,19 @@ public class CompanyEmailSystem {
     	return currentProjShowing;
     }
     
+    //Test method to add premade projects - Tom and Liam
+    public void AddProject(CompanyProject proj) {
+    	AllProjects.add(proj);
+    }
+    
     public CompanyEmailSystem() { 
     	///////
         //Startup
         //////
         GlobalProjectCounter = 0;
         AllProjects = new ArrayList<CompanyProject>();
+        // Removed test data and put in our testing class - Tom.
         
-        //////////////
-        //example test data
-        //////////////
-        
-        CompanyProject cp1 = new CompanyProject("Proj1");
-        CompanyProject cp2 = new CompanyProject("Proj2");
-        CompanyProject cp3 = new CompanyProject("Proj3");
-        
-        for (int x=0;x <10; x++) {
-        	CompanyEmail ce = new CompanyEmail("me"+x+"@me.com", "you"+x+"@you.com", "this is a test subject for email"+x, "this is a test message for email "+x);
-        	
-        	switch(x%3) {
-        	case 0:
-        		cp1.addEmail(ce);
-        		break;
-        	case 1:
-        		cp2.addEmail(ce);
-        		break;
-        	case 2:
-        		cp3.addEmail(ce);
-        		break;
-        	}
-        }
-        
-        AllProjects.add(cp1);
-        AllProjects.add(cp2);
-        AllProjects.add(cp3);
-
-        /// END OF TEST DATA ///
         										//   V Removed Space (because test highlighted unnecessary) -LIAM
         System.out.println(mainMenu);
         Scanner in = new Scanner(System.in);

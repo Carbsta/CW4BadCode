@@ -14,16 +14,55 @@ public class CompanyEmailSystemTest {
 
 		//Company Email Systems Tests - Paired Coding - Liam and Tom
 		
-		private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		private ByteArrayOutputStream outContent; 
 		
 		private final String mainMenuString = "What do you want to do?\nP = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it";
 		private final String projectMenuString = "What do you want to do?\n L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project";
 		private final String gb = "Goodbye!";
 		private final String nl = System.lineSeparator();
+		private final String error = "Command not recognised";
 		
 		@Before
 		 public void setUpStreams() {
+			outContent = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(outContent));
+			//////////////
+	        //example test data
+	        //////////////
+	        
+	        CompanyProject cp1 = new CompanyProject("Proj1");
+	        CompanyProject cp2 = new CompanyProject("Proj2");
+	        CompanyProject cp3 = new CompanyProject("Proj3");
+	        
+	        for (int x=0;x <10; x++) {
+	        	CompanyEmail ce = new CompanyEmail("me"+x+"@me.com", "you"+x+"@you.com", "this is a test subject for email"+x, "this is a test message for email "+x);
+	        	
+	        	switch(x%3) {
+	        	case 0:
+	        		cp1.addEmail(ce);
+	        		break;
+	        	case 1:
+	        		cp2.addEmail(ce);
+	        		break;
+	        	case 2:
+	        		cp3.addEmail(ce);
+	        		break;
+	        	}
+	        }
+	        
+	        String input = "X";
+			InputStream in = new ByteArrayInputStream(input.getBytes());
+			System.setIn(in);
+			CompanyEmailSystem ces = new CompanyEmailSystem();
+	        
+	        ces.AddProject(cp1);
+	        ces.AddProject(cp2);
+	        ces.AddProject(cp3);
+	        
+	        /// END OF TEST DATA ///
+	        outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+	        
 		 }
 		
 		@After
@@ -69,14 +108,24 @@ public class CompanyEmailSystemTest {
 			new CompanyEmailSystem();
 		    assertEquals(0, CompanyEmailSystem.getCurrentProjShow());
 		}
-
+		
+		@Test
+		 public void testPressinvalidNUMOnOptions() { //Enters -NUMs, escapes with X
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			String input = ""+Integer.MIN_VALUE+nl+"-4"+nl+"0"+nl+"4"+nl+Integer.MAX_VALUE+nl+"X";
+			InputStream in = new ByteArrayInputStream(input.getBytes());
+			System.setIn(in);
+			new CompanyEmailSystem();
+			assertEquals(mainMenuString+nl+error+nl+mainMenuString+nl+error+nl+mainMenuString+nl+error+nl+mainMenuString+nl+error+nl+mainMenuString+nl+error+nl+mainMenuString+nl+gb+nl, outContent.toString());
+		}
 		
 // ========== Jacob started here ==========
 	
 		//===== List Phase Function tests ======
 		//3.5.1
 		
-		@Test
+		/*@Test
 		 public void testListedEmails() {
 			CompanyEmailSystem ces = new CompanyEmailSystem();
 			ces.ListPhases();
@@ -98,9 +147,9 @@ public class CompanyEmailSystemTest {
 				new CompanyEmailSystem();
 				assertEquals(mainMenuString+nl+projectMenuString+nl+mainMenuString+nl+gb+nl, outContent.toString());
 			}
-		}
+		} */
 		
-}
+} 
 
 
 
