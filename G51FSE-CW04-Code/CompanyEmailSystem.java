@@ -10,11 +10,17 @@ public class CompanyEmailSystem {
     
     public static void main(String[] args) {
 
+    	//Moved the content of main into constructor for JUnit testing
     	
     	new CompanyEmailSystem();
     	
     }
-    	
+    
+    //Test Method to return private variables Liam and Tom
+    public static int getCurrentProjShow() {
+    	return currentProjShowing;
+    }
+    
     public CompanyEmailSystem() { 
     	///////
         //Startup
@@ -51,8 +57,8 @@ public class CompanyEmailSystem {
         AllProjects.add(cp3);
 
         /// END OF TEST DATA ///
-        
-        System.out.println("What do you want to do?\n P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it");
+        										//   V Removed Space (because test highlighted unnecessary) -LIAM
+        System.out.println("What do you want to do?\nP = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it");
         Scanner in = new Scanner(System.in);
         while (in.hasNextLine()){
             String s = in.next();
