@@ -7,6 +7,7 @@ import org.junit.Test;
 public class CompanyProjectTest {
 	//Tests by Chris, Audrey and Jacob
 
+	// ---- Audrey's tests start -----
 	
 	@Test
 	public void testdef() {//tests not in order so PID is not expected no.
@@ -65,6 +66,8 @@ public class CompanyProjectTest {
 		assertEquals(2, cp2.getPID());
 		System.out.println(cp2.getPTitle());
 	} */
+	
+	//----- Audrey's tests end --------
 	
 	//Chris test start
 		@Test
