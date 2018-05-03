@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Before;
@@ -19,6 +20,7 @@ public class CompanyEmailSystemTest {
 
 		private ByteArrayOutputStream outContent; 
 		private CompanyEmailSystem testCES;
+		
 
 		private final String mainMenuString = "What do you want to do?\nP = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it";
 		private final String projectMenuString = "What do you want to do?\n L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project";
@@ -167,7 +169,7 @@ public class CompanyEmailSystemTest {
 		
 // ========== Jacob started here ==========
 	
-		//===== List Phase Function tests ======
+		//===== List Contacts Function tests ======
 		//3.6.1
 		
 
@@ -182,28 +184,94 @@ public class CompanyEmailSystemTest {
 
 		}
 		
+		//3.6.2
+		@Test
+		 public void testListedEmpty() {
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			
+			String input = "X";
+			InputStream in = new ByteArrayInputStream(input.getBytes());
+			System.setIn(in);
+			CompanyEmailSystem ces = new CompanyEmailSystem();
+			
+			String should = "";
+			
+			ces.AddProject(new CompanyProject(ces));
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			ces.ListContacts(1);
+			assertEquals(should,outContent.toString());
+
+		}
 		
 		
+		//===== Add Email Function tests ======
+		//3.7.1
+		@Test
+		 public void testAddEmailSuc() {
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			
+			String input = "jacob@gmail.com"+nl+"peter@gmail.com"+nl+"Hi Peter!"+nl+"Was wondering how you are?";
+			InputStream in = new ByteArrayInputStream(input.getBytes());
+			System.setIn(in);
+						
+			String should = "Which email address is it from?"+nl+"Which email address is it to?"+nl+"What is the Subject?"+nl+"What is the Message?"+nl+"[Email added to Proj2 [Feasibility]]\n";
+				
+			Scanner scans = new Scanner(in);
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			testCES.AddEmail(scans, 1);
+			
+			
+			assertEquals(should,outContent.toString());
+
+		}
 		
+		//3.7.2
+		@Test
+		 public void testAddEmailBad() {
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			
+			String input = "jacob@gmail@com"+nl+"peter@gmail@com"+nl+"Hi Peter!"+nl+"Was wondering how you are?";
+			InputStream in = new ByteArrayInputStream(input.getBytes());
+			System.setIn(in);
+						
+			String should = "Which email address is it from?"+nl+"Which email address is it to?"+nl+"What is the Subject?"+nl+"What is the Message?"+nl+"[Email address(es) not valid]\n";
+				
+			Scanner scans = new Scanner(in);
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			testCES.AddEmail(scans, 1);
+			
+			
+			assertEquals(should,outContent.toString());
+
+		}
 		
-//		
-//		@Test
-//		 public void testNoContactsToList() {
-//			String input = "X";
-//			InputStream in = new ByteArrayInputStream(input.getBytes());
-//			System.setIn(in);
-//			CompanyEmailSystem ces = new CompanyEmailSystem();
-//			CompanyEmailSystem ced = new CompanyEmailSystem();
-//			
-//			outContent = new ByteArrayOutputStream();
-//			System.setOut(new PrintStream(outContent));
-//			
-//			String should = "";
-//			ces.ListContacts(1);
-//			assertEquals(should,outContent.toString());
-//		}
-//		
-		
+		//===== Change Project Phase Function tests ======
+		//3.8.1
+		@Test
+		 public void testNextPhaseSuc() {
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			
+			String input = "X";
+			InputStream in = new ByteArrayInputStream(input.getBytes());
+			System.setIn(in);
+			
+			
+			String should = "[Phase changed: Proj1 [Design]\n";
+			
+			
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			testCES.ChangeProjectPhase(1);
+			assertEquals(should,outContent.toString());
+
+		}
 } 
 
 

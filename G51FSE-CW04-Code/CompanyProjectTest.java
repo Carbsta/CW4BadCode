@@ -50,7 +50,7 @@ public class CompanyProjectTest {
 		assertEquals(first.getPID(), ++defID );
 		assertEquals("New Project", one.getPTitle());
 		assertEquals(arr, one.getProjectContacts());
-		assertEquals(1, one.getPhaseByID());
+		assertEquals(0, one.getPhaseByID());
 		assertEquals(arr, one.getEmailsForPhase());
 	}
 
@@ -161,7 +161,7 @@ public class CompanyProjectTest {
 		//2.11.2 Returns false when the project phase 
 		@Test
 		public void testNPFalse() {
-			int i = 1;
+			int i = 0;
 			CompanyProject cp = new CompanyProject(testCES);
 			
 			while (i++ < CompanyEmailSystem.ProjectPhases.length) {
@@ -202,7 +202,7 @@ public class CompanyProjectTest {
 		@Test
 		public void testPhaseIDs() {
 			CompanyProject cp = new CompanyProject(testCES);
-			int i = 1;
+			int i = 0;
 			
 			while(i < CompanyEmailSystem.ProjectPhases.length)
 			{
@@ -287,7 +287,7 @@ public class CompanyProjectTest {
 			assertEquals(nextcp.getPID(), ++tpid);
 			assertEquals(cp.getPTitle(), "New Project");
 			assertEquals(cp.getProjectContacts(), empty);
-			assertEquals(cp.getPhaseByID(), 1);
+			assertEquals(cp.getPhaseByID(), 0);
 			assertEquals(cp.getEmailsForPhase(), empty);
 		} 
 		

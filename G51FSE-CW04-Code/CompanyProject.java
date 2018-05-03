@@ -15,7 +15,8 @@ public class CompanyProject {
         PID = manager.GlobalProjectCounter;
         PTitle = "New Project";
         ProjectContacts = new ArrayList<String>();
-        ProjectPhase = 1;
+        //ProjectPhase = 1;
+        ProjectPhase = 0;//arrays start from 0 - Jacob
         ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();
     }
     
@@ -25,7 +26,8 @@ public class CompanyProject {
         PID = manager.GlobalProjectCounter;
         PTitle = pTitle;
         ProjectContacts = new ArrayList<String>();
-        ProjectPhase = 1;
+        //ProjectPhase = 1;
+        ProjectPhase = 0;//arrays start from 0 - Jacob
         ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();
     }
     
@@ -65,15 +67,17 @@ public class CompanyProject {
 		return emailAddress;
    }
     
-    public void addEmail(CompanyEmail newEmail) {
+    public boolean addEmail(CompanyEmail newEmail) {
         if (newEmail.isValid()) {
             ProjectEmails[ProjectPhase].add(newEmail);
             if (ProjectContacts.contains(newEmail.fromAddress())) {
                 //do nothing
             } else {
-                ProjectContacts.add(newEmail.fromAddress());
+                ProjectContacts.add(newEmail.fromAddress());              
             }
+            return true; //Making this function return a boolean if the email is valid or not, so we can see if it is added correctly - Jacob
         }
+        return false;
     }
     
     public ArrayList<CompanyEmail> getEmailsForPhase() {
@@ -94,13 +98,12 @@ public class CompanyProject {
     }
     
     public String getPhaseByName() {
-        //return CompanyEmailSystem.ProjectPhases[ProjectPhase];
-    	return CompanyEmailSystem.ProjectPhases[ProjectPhase - 1]; 
-    	//String array starts at 0 where as the project phase starts at 1 - Jacob
+    	return CompanyEmailSystem.ProjectPhases[ProjectPhase]; 
+    	
     }
     
     public int getPhaseByID() {
-        return ProjectPhase;
+        return ProjectPhase; 
     }
     
     public ArrayList<String> getProjectContacts() {
