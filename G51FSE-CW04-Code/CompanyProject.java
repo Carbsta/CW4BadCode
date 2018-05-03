@@ -6,19 +6,23 @@ public class CompanyProject {
     private ArrayList<String> ProjectContacts;
     private int ProjectPhase;
     private ArrayList[] ProjectEmails = new ArrayList[6];
+    private CompanyEmailSystem manager; // we need each project to know what System it is in, so the global project counter is no longer static. - Tom.
     
-    public CompanyProject() {
-        CompanyEmailSystem.GlobalProjectCounter++;
-        PID = CompanyEmailSystem.GlobalProjectCounter;
+    public CompanyProject(CompanyEmailSystem caller) {
+    	//We set up the reference to the project's CompanyEmailSystem and then increment that CES's project counter. Tom.
+    	manager = caller;
+        manager.GlobalProjectCounter++;
+        PID = manager.GlobalProjectCounter;
         PTitle = "New Project";
         ProjectContacts = new ArrayList<String>();
         ProjectPhase = 1;
         ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();
     }
     
-    public CompanyProject(String pTitle) {
-    	CompanyEmailSystem.GlobalProjectCounter++;
-        PID = CompanyEmailSystem.GlobalProjectCounter;
+    public CompanyProject(CompanyEmailSystem caller, String pTitle) {
+    	manager = caller;
+    	manager.GlobalProjectCounter++;
+        PID = manager.GlobalProjectCounter;
         PTitle = pTitle;
         ProjectContacts = new ArrayList<String>();
         ProjectPhase = 1;

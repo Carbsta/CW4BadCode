@@ -2,11 +2,11 @@ import java.util.*;
 
 public class CompanyEmailSystem {
 
-	public static int GlobalProjectCounter;
+	public int GlobalProjectCounter;
 	public static String[] ProjectPhases = new String[]{"Feasibility","Design","Implementation","Testing","Deployment","Completed"};
 	
-    private static ArrayList<CompanyProject> AllProjects;
-    private static int currentProjShowing;
+    private ArrayList<CompanyProject> AllProjects;
+    private int currentProjShowing;
     
     //Created constants to ensure menu always displayed the same - Liam and Tom
     private final String mainMenu = "What do you want to do?\nP = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it";
@@ -21,7 +21,7 @@ public class CompanyEmailSystem {
     }
     
     //Test Method to return private variables - Liam and Tom
-    public static int getCurrentProjShow() {
+    public int getCurrentProjShow() {
     	return currentProjShowing;
     }
     
@@ -38,8 +38,13 @@ public class CompanyEmailSystem {
         AllProjects = new ArrayList<CompanyProject>();
         // Removed test data and put in our testing class - Tom.
         
-        										//   V Removed Space (because test highlighted unnecessary) -LIAM
-        System.out.println(mainMenu);
+        // Call mainLoop to start the program. Also this allows to call it in testing without making a new CompanyEmailSystem.
+        mainLoop();
+    }
+    
+    public void mainLoop() {
+    	//Moved to a new method that can be called to be tested. Tom.
+    	System.out.println(mainMenu);
         Scanner in = new Scanner(System.in);
         while (in.hasNextLine()){
             String s = in.next();
@@ -89,7 +94,6 @@ public class CompanyEmailSystem {
             }
         }
         in.close();
-        
     }
     
     public void ListProjects(){
@@ -104,7 +108,7 @@ public class CompanyEmailSystem {
         System.out.println("What is the title of the project?");
         in.nextLine(); // to remove read-in bug
         String title = in.nextLine();
-        AllProjects.add(new CompanyProject(title));
+        AllProjects.add(new CompanyProject(this,title)); //Now passes a reference of this CompanyEmailSystem to the project.
         System.out.println("[Project added]");
     }
     
@@ -137,10 +141,11 @@ public class CompanyEmailSystem {
         CompanyProject cp = AllProjects.get(currentProjShowing);
         
         for (int x=0; x < cp.getPhaseByID(); x++) {
-        	if(cp.getEmailsForPhase(x).size() == NULL
-)
-            System.out.println((x+1)+") "+cp.getPhaseByName()+" - "+cp.getEmailsForPhase().size()+" Emails");
-        } 
+        	if(cp.getEmailsForPhase(x).size() == 0)
+        		{
+        			System.out.println((x+1)+") "+cp.getPhaseByName()+" - "+cp.getEmailsForPhase().size()+" Emails");
+        		}
+        }
     }
     
 

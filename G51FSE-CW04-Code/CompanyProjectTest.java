@@ -1,18 +1,49 @@
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class CompanyProjectTest {
 	//Tests by Chris, Audrey and Jacob
+	
+	
+	// ------  Test setup after fixing CompanyEmailSystem. Written by Tom.
+	private CompanyEmailSystem testCES;
+	private ByteArrayOutputStream outContent; 
+	
+	@Before
+	public void setupCES() {
+		outContent = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(outContent));
+		String input = "X";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		testCES = new CompanyEmailSystem();
+		System.setOut(null);
+		System.setIn(null);
+	}
+	
+	@After
+	 public void cleanUpStreams() {
+		System.setOut(null);
+		System.setIn(null);
+	 }
+	// -----
+	
 
 	// ---- Audrey's tests start -----
 	
 	@Test
 	public void testdef() {
-		CompanyProject one = new CompanyProject();
-		CompanyProject first = new CompanyProject();
+		CompanyProject one = new CompanyProject(testCES);
+		CompanyProject first = new CompanyProject(testCES);
 		ArrayList<String> arr = new ArrayList<String>();
 		
 		int defID = one.getPID();
@@ -25,8 +56,8 @@ public class CompanyProjectTest {
 
 	@Test
 	public void testGetPID() {
-		CompanyProject three = new CompanyProject();
-		CompanyProject third = new CompanyProject();
+		CompanyProject three = new CompanyProject(testCES);
+		CompanyProject third = new CompanyProject(testCES);
 		
 		int testID = three.getPID();
 		assertEquals(third.getPID(), ++testID);
@@ -34,20 +65,20 @@ public class CompanyProjectTest {
 	
 	@Test
 	public void testGetPtitle() {
-		CompanyProject four = new CompanyProject();
+		CompanyProject four = new CompanyProject(testCES);
 		assertEquals("New Project", four.getPTitle());
 	}
 	
 	@Test
 	public void testSetPtitle() {//
-		CompanyProject five = new CompanyProject();
+		CompanyProject five = new CompanyProject(testCES);
 		five.setPTitle("abcd");
 		assertEquals("New Project", five.getPTitle());
 	}
 	
 	@Test
 	public void testSetPtitle2() {
-		CompanyProject five1 = new CompanyProject();
+		CompanyProject five1 = new CompanyProject(testCES);
 		five1.setPTitle("NewProjectName");
 		assertEquals("NewProjectName", five1.getPTitle());
 		
@@ -60,7 +91,7 @@ public class CompanyProjectTest {
 //	Chris test start
 		@Test
 		public void testIsContact() {
-			CompanyProject test6 = new CompanyProject();
+			CompanyProject test6 = new CompanyProject(testCES);
 			String example = "123@gmail.com";
 			boolean result = test6.isContact("123@gmail.com");
 			assertNotNull(example, result);
@@ -70,7 +101,7 @@ public class CompanyProjectTest {
 
 		@Test
 		public void testAddContact() {
-			CompanyProject test7 = new CompanyProject();
+			CompanyProject test7 = new CompanyProject(testCES);
 			String example = "1234@gmail.com";
 			//boolean result = test7.addContact(example);
 			//assertNotNull(example,result);
@@ -79,7 +110,7 @@ public class CompanyProjectTest {
 
 		@Test
 		public void testAddEmail() {
-			CompanyProject test8 = new CompanyProject();
+			CompanyProject test8 = new CompanyProject(testCES);
 			CompanyEmail ce = new CompanyEmail("test@gmail.com", "test@gmail.com", "this is a test subject for email", "this is a test message for email ");
 			test8.addEmail(ce);
 //			assertNull(example,result);
@@ -89,16 +120,15 @@ public class CompanyProjectTest {
 
 		@Test
 		public void testGetEmailsForPhase() {
-		CompanyProject test9 = new CompanyProject();
+		CompanyProject test9 = new CompanyProject(testCES);
 		ArrayList<CompanyEmail> A1 = test9.getEmailsForPhase();
 		assertNotNull(A1);
 		}
 
 		@Test
 		public void testGetEmailsForPhaseInt() {
-		CompanyProject test10 = new CompanyProject();
+		CompanyProject test10 = new CompanyProject(testCES);
 		ArrayList<CompanyEmail> B2 = test10.getEmailsForPhase();
-		System.out.println(B2);
 		assertNotNull(B2);
 		}
 	//Chris test end
@@ -118,7 +148,7 @@ public class CompanyProjectTest {
 		
 		@Test
 		public void testNPTrue() {
-			CompanyProject cp = new CompanyProject();
+			CompanyProject cp = new CompanyProject(testCES);
 			if(CompanyEmailSystem.ProjectPhases.length > 1){
 				assertTrue(cp.nextPhase());
 			}
@@ -132,7 +162,7 @@ public class CompanyProjectTest {
 		@Test
 		public void testNPFalse() {
 			int i = 1;
-			CompanyProject cp = new CompanyProject();
+			CompanyProject cp = new CompanyProject(testCES);
 			
 			while (i++ < CompanyEmailSystem.ProjectPhases.length) {
 				cp.nextPhase();
@@ -149,7 +179,7 @@ public class CompanyProjectTest {
 			
 		@Test
 		public void testPhaseNames() {
-			CompanyProject cp = new CompanyProject();
+			CompanyProject cp = new CompanyProject(testCES);
 			
 			String[] projectNames = new String[]{"Feasibility","Design","Implementation","Testing","Deployment","Completed"};
 			
@@ -171,7 +201,7 @@ public class CompanyProjectTest {
 
 		@Test
 		public void testPhaseIDs() {
-			CompanyProject cp = new CompanyProject();
+			CompanyProject cp = new CompanyProject(testCES);
 			int i = 1;
 			
 			while(i < CompanyEmailSystem.ProjectPhases.length)
@@ -187,7 +217,7 @@ public class CompanyProjectTest {
 		
 		@Test
 		public void testEmptyContacts() {
-			CompanyProject cp = new CompanyProject();
+			CompanyProject cp = new CompanyProject(testCES);
 			ArrayList<String> empty = new ArrayList<String>();
 			
 			assertEquals(cp.getProjectContacts(), empty);
@@ -197,7 +227,7 @@ public class CompanyProjectTest {
 		//2.14.2
 		@Test
 		public void testSomeContacts() {
-			CompanyProject cp = new CompanyProject();
+			CompanyProject cp = new CompanyProject(testCES);
 			ArrayList<String> some = new ArrayList<String>();
 			
 			some.add("jeed@gmail.com");
@@ -215,7 +245,7 @@ public class CompanyProjectTest {
 				
 		@Test
 		public void testNewTitleS() {
-			CompanyProject cp = new CompanyProject();
+			CompanyProject cp = new CompanyProject(testCES);
 			String tstr = "New Project [Feasibility]";
 			assertEquals(cp.toString(), tstr);
 			
@@ -228,7 +258,7 @@ public class CompanyProjectTest {
 		public void testNamedTitleS() {
 			int i = 0;
 			String[] tstr = new String[]{"Named Project [Feasibility]","Renamed Project [Feasibility]","Renamed Project [Design]"};
-			CompanyProject cp = new CompanyProject("Named Project");
+			CompanyProject cp = new CompanyProject(testCES,"Named Project");
 			
 			assertEquals(cp.toString(), tstr[i++]);
 			
@@ -248,8 +278,8 @@ public class CompanyProjectTest {
 		//2.1.1
 		@Test
 		public void testProjectConPID() {
-			CompanyProject cp = new CompanyProject();
-			CompanyProject nextcp = new CompanyProject();
+			CompanyProject cp = new CompanyProject(testCES);
+			CompanyProject nextcp = new CompanyProject(testCES);
 			
 			ArrayList<String> empty = new ArrayList<String>();
 			
@@ -264,7 +294,7 @@ public class CompanyProjectTest {
 		
 		//2.2.1
 		public void testProjectConSetTit() {
-			CompanyProject cp = new CompanyProject("This Is A New Project");
+			CompanyProject cp = new CompanyProject(testCES,"This Is A New Project");
 			assertEquals(cp.getPhaseByName(), "This Is A New Project");
 			}
 		
