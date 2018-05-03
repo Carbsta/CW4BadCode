@@ -153,7 +153,7 @@ public class CompanyEmailSystem {
         CompanyProject cp = AllProjects.get(currentProjShowing);
         for (int x=0; x < cp.getPhaseByID(); x++ ) {
             System.out.println((x+1)+") "+cp.getPhaseByName()+" - "+cp.getEmailsForPhase(x).size()+" Emails");
-        }
+        } 
     }
     
     private static void ListContacts() {

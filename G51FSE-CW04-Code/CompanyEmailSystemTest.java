@@ -56,4 +56,42 @@ public class CompanyEmailSystemTest {
 			assertEquals(mainMenuString+nl+projectMenuString+nl+mainMenuString+nl+gb+nl, outContent.toString());
 			
 		}
+
+		 public void testMain() {
+			CompanyEmailSystem ces = new CompanyEmailSystem();
+			ces.main(null);
+			assertEquals("What do you want to do?\\n P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it",outContent.toString());
+		 }
+
+		
+// ========== Jacob started here ==========
+	
+		//===== List Phase Function tests ======
+		//3.5.1
+		
+		@Test
+		 public void testListedEmails() {
+			CompanyEmailSystem ces = new CompanyEmailSystem();
+			ces.ListPhases()
+		}
+		
+		
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
