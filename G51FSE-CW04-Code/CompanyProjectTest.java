@@ -35,15 +35,12 @@ public class CompanyProjectTest {
 	@Test
 	public void testGetPtitle() {
 		CompanyProject four = new CompanyProject();
-		
 		assertEquals("New Project", four.getPTitle());
-		
 	}
 	
 	@Test
 	public void testSetPtitle() {//
 		CompanyProject five = new CompanyProject();
-		String name = "abcd";
 		five.setPTitle("abcd");
 		assertEquals("New Project", five.getPTitle());
 	}
@@ -51,22 +48,11 @@ public class CompanyProjectTest {
 	@Test
 	public void testSetPtitle2() {
 		CompanyProject five1 = new CompanyProject();
-		String name1 = "NewProjectName";
 		five1.setPTitle("NewProjectName");
 		assertEquals("NewProjectName", five1.getPTitle());
 		
 	}
 
-	/*@Test
-	public void test() {
-		CompanyProject cp = new CompanyProject("New Long Name");
-		assertNotNull(cp.getPTitle());
-		assertEquals(1, cp.getPID());
-		CompanyProject cp2 = new CompanyProject();
-		assertEquals(2, cp2.getPID());
-		System.out.println(cp2.getPTitle());
-	} */
-	
 	//----- Audrey's tests end --------
 	
 	//Chris test start
