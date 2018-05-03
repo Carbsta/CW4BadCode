@@ -78,6 +78,7 @@ public class CompanyEmailSystem {
                         ChangeProjectPhase();
                     } else if (s.equals("X")) {
                         currentProjShowing = 0;
+                        //Same fix to if statement as above - Liam.
                     } else if ((s.chars().allMatch(Character::isDigit)) && Integer.parseInt(s) != -1 ) {
                         ListEmails(Integer.parseInt(s));
                     } else {
