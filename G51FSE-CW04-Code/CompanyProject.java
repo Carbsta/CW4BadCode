@@ -50,11 +50,12 @@ public class CompanyProject {
 //    	return PTitle = pTitle;
 //    }
     
-    
+    //edited by Chris
     public boolean isContact(String emailAddress) {
         return ProjectContacts.contains(emailAddress);
     }
     
+    //edited by Chris
     public String addContact(String emailAddress) {
         ProjectContacts.add(emailAddress);
 		return emailAddress;
