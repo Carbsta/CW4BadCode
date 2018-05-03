@@ -69,13 +69,6 @@ public class CompanyEmailSystemTest {
 			new CompanyEmailSystem();
 		    assertEquals(0, CompanyEmailSystem.getCurrentProjShow());
 		}
-<<<<<<< HEAD
-
-		 public void testMain() {
-			CompanyEmailSystem ces = new CompanyEmailSystem();
-			ces.main(null);
-			assertEquals("What do you want to do?\\n P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it",outContent.toString());
-		 }
 
 		
 // ========== Jacob started here ==========
@@ -86,12 +79,12 @@ public class CompanyEmailSystemTest {
 		@Test
 		 public void testListedEmails() {
 			CompanyEmailSystem ces = new CompanyEmailSystem();
-			ces.ListPhases()
+			ces.ListPhases();
 		}
 		
 		
 
-=======
+
 		
 		@Test
 		 public void testCheckXToRightMenu() { //Enters NUM, either returns with X OR escapes with X
@@ -107,7 +100,6 @@ public class CompanyEmailSystemTest {
 			}
 		}
 		
->>>>>>> Before Dinner update
 }
 
 
