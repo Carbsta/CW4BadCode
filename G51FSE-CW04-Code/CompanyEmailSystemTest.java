@@ -205,17 +205,46 @@ public class CompanyEmailSystemTest {
 		
 		@Test
 		public void testEmailList() {
+			String expected1 = "Proj1 [Feasibility]\n"+ nl + "   From                Subject\n" + "--------------------------------\n";
+			String expected2 = "Proj2 [Feasibility]\n"+ nl + "   From                Subject\n" + "--------------------------------\n";
+			String expected3 = "Proj3 [Feasibility]\n"+ nl + "   From                Subject\n" + "--------------------------------\n";
+			//For loop to generate test string by listing the emails in reverse order to go most recent first.
+			int y = 1;
+			for (int x=9;x >= 0; x--) {
+	        	switch(x%3) {
+	        	case 0:
+	        		expected1 = expected1 + (y/3+1)+") "+"me"+x+"@me.com" + " - this is a test subject for email"+x+nl;
+	        		break;
+	        	case 1:
+	        		expected2 = expected2 + (y/3)+") "+"me"+x+"@me.com" + " - this is a test subject for email"+x+nl;
+	        		break;
+	        	case 2:
+	        		expected3 = expected3 + (y/3+1)+") "+"me"+x+"@me.com" + " - this is a test subject for email"+x+nl;
+	        		break;
+	        	}
+	        	y++;
+	        }
+			
 			outContent = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(outContent));
 			testCES.ListEmails(0,1);
-			String expected = "";
-			assertEquals(expected,outContent.toString());
+			assertEquals(expected1,outContent.toString());
+			
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			testCES.ListEmails(0,2);
+			assertEquals(expected2,outContent.toString());
+			
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			testCES.ListEmails(0,3);
+			assertEquals(expected3,outContent.toString());
 			
 		}
 		
 	
 		
-// End of sections 4 and 5.
+// End of section 4.
 		
 // Liam starts tests on section 5 here.
 		

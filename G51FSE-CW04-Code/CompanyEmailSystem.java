@@ -116,8 +116,8 @@ public class CompanyEmailSystem {
         System.out.println("[Project added]");
     }
     
-    public void ListEmails(int phaseToShow, int proj) { //Added a parameter to take projectID as an integer instead of using a global variable.
-        CompanyProject cp = AllProjects.get(proj);
+    public void ListEmails(int phaseToShow, int proj) { //Added a parameter to take projectID as an integer instead of using a global variable. Tom.
+        CompanyProject cp = AllProjects.get(proj-1);//Need to subtract 1 from the project number to get the array index. Tom.
         ArrayList<CompanyEmail> projectPhaseEmails = null;
         if (phaseToShow==0) {
             projectPhaseEmails = cp.getEmailsForPhase();
