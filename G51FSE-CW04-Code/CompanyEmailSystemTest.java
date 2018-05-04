@@ -165,7 +165,27 @@ public class CompanyEmailSystemTest {
 			assertEquals(mainMenuString+nl+error+nl+mainMenuString+nl+whatTitle+nl+"[Project added]"+nl+mainMenuString+nl+projectMenuString+nl+error+nl+projectMenuString+nl+mainMenuString+nl+gb+nl, outContent.toString());
 		}
 		
+// Chris and Audrey start their tests for section 2 and 3 here.
 		
+
+// End of section 2 and 3
+		
+// Tom starts tests on section 4 and 5 here.
+		
+		//section 4
+		
+		@Test
+		public void testEmailList() {
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			testCES.ListEmails(0,1);
+			String expected = "";
+			assertEquals(expected,outContent.toString());
+			
+		}
+		
+		
+// End of sections 4 and 5.
 		
 // ========== Jacob started here ==========
 	
@@ -179,7 +199,7 @@ public class CompanyEmailSystemTest {
 			System.setOut(new PrintStream(outContent));
 			
 			String should = "1) me0@me.com\n" + "2) me3@me.com\n" + "3) me6@me.com\n" + "4) me9@me.com\n";
-			testCES.ListContacts(1);
+			testCES.ListContacts(0);
 			assertEquals(should,outContent.toString());
 
 		}

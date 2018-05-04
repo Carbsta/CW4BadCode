@@ -59,7 +59,7 @@ public class CompanyEmailSystem {
                         System.out.println("Goodbye!");
                         break;
                         		//(Integer.parseInt(s) != -1) -- This allows numbers less than -1 to be entered and numbers over the project counter to be entered. Liam and Tom.
-                    } else if ((s.chars().allMatch(Character::isDigit)) && (Integer.parseInt(s) <= GlobalProjectCounter && Integer.parseInt(s) > 0 )) { //New condition -- Liam and Tom.
+                    } else if ((s.chars().allMatch(Character::isDigit)) && (Integer.parseInt(s) <= GlobalProjectCounter) && (Integer.parseInt(s) > 0 )) { //New condition -- Liam and Tom.
                     	//currentProjShowing = Integer.parseInt(s)-1; This causes the 1st project to never be accessible. Tom and Liam.
                     	//Resolved Exception error, now checks input is numerical before trying to pass it as int - Liam.
                         currentProjShowing = Integer.parseInt(s);
@@ -71,7 +71,8 @@ public class CompanyEmailSystem {
                     	in.nextLine(); //Moved this out of the methods where it is repeated so those methods can be properly tested. Tom and Jacob.
                         AddEmail(in, currentProjShowing); //Passes currentProjShowing as AddEmail was changed to take an Int - Jacob
                     }else if (s.equals("L")) {
-                        ListEmails(0);
+                    	//ListEmails(0); Changed this to get the current phase of the current project rather than just phase 0. Tom.
+                        ListEmails(AllProjects.get(currentProjShowing - 1).getPhaseByID(),currentProjShowing); //passes currentProjShowing to ListEmails as method was changed. Tom.
                     } else if (s.equals("F")) {
                         ListPhases();
                     } else if (s.equals("C")) {
@@ -81,8 +82,8 @@ public class CompanyEmailSystem {
                     } else if (s.equals("X")) {
                         currentProjShowing = 0;
                         //Same fix to if statement as above - Liam.
-                    } else if ((s.chars().allMatch(Character::isDigit)) && Integer.parseInt(s) != -1 ) {
-                        ListEmails(Integer.parseInt(s));
+                    } else if ((s.chars().allMatch(Character::isDigit)) && (Integer.parseInt(s) > 0) && (Integer.parseInt(s) < 6)) {
+                        ListEmails(Integer.parseInt(s),currentProjShowing); //passes currentProjShowing to ListEmails as method was changed. Tom.
                     } else {
                         System.out.println("Command not recognised");
                     }
@@ -115,8 +116,8 @@ public class CompanyEmailSystem {
         System.out.println("[Project added]");
     }
     
-    public void ListEmails(int phaseToShow) {
-        CompanyProject cp = AllProjects.get(currentProjShowing);
+    public void ListEmails(int phaseToShow, int proj) { //Added a parameter to take projectID as an integer instead of using a global variable.
+        CompanyProject cp = AllProjects.get(proj);
         ArrayList<CompanyEmail> projectPhaseEmails = null;
         if (phaseToShow==0) {
             projectPhaseEmails = cp.getEmailsForPhase();
