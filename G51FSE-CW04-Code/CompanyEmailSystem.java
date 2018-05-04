@@ -74,7 +74,7 @@ public class CompanyEmailSystem {
                     	//ListEmails(0); Changed this to get the current phase of the current project rather than just phase 0. Tom.
                         ListEmails(AllProjects.get(currentProjShowing - 1).getPhaseByID(),currentProjShowing); //passes currentProjShowing to ListEmails as method was changed. Tom.
                     } else if (s.equals("F")) {
-                        ListPhases();
+                        ListPhases(currentProjShowing);
                     } else if (s.equals("C")) {
                         ListContacts(currentProjShowing); //Passes currentProjShowing as ListContacts was changed to take an Int - Jacob
                     } else if (s.equals("N")) {
@@ -141,14 +141,17 @@ public class CompanyEmailSystem {
         }
     }
     
-    public void ListPhases() {
-        CompanyProject cp = AllProjects.get(currentProjShowing);
-        
-        for (int x=0; x < cp.getPhaseByID(); x++) {
-        	if(cp.getEmailsForPhase(x).size() == 0)
-        		{
-        			System.out.println((x+1)+") "+cp.getPhaseByName()+" - "+cp.getEmailsForPhase().size()+" Emails");
-        		}
+    public void ListPhases(int projID) {
+        CompanyProject cp = AllProjects.get(projID - 1); //Subtracted 1 - Liam
+        for (int x=0; x <= cp.getPhaseByID(); x++) {
+        	//if(cp.getEmailsForPhase(x).size() != 0)	//Replaced GT with GTE and replaced EQ with NEQ - Liam and Tom
+        	//IF statement removed so that phases with 0 emails still displayed - Liam
+        		//{
+        	//System.out.println((x+1)+") "+cp.getPhaseByName()+" - "+cp.getEmailsForPhase().size()+" Emails");
+        	System.out.println((x+1)+") "+ProjectPhases[x]+" - "+cp.getEmailsForPhase(x).size()+" Emails");
+        	//ProjectPhases is the correct way to get the name of a phase by ID. Tom.
+        	//Changed getEmailsForPhase() to getEmailsForPhase(x) so it doesn't just fetch the emails for the same project. Tom.
+        		//}
         }
     }
     
