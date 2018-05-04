@@ -103,6 +103,8 @@ public class CompanyProjectTest {
 		public void testAddContact() {
 			CompanyProject test7 = new CompanyProject(testCES);
 			String example = "1234@gmail.com";
+			String result = test7.addContact(example);
+			assertEquals(example,result);
 			//boolean result = test7.addContact(example);
 			//assertNotNull(example,result);
 		}
@@ -114,8 +116,12 @@ public class CompanyProjectTest {
 			CompanyEmail ce = new CompanyEmail("test@gmail.com", "test@gmail.com", "this is a test subject for email", "this is a test message for email ");
 			test8.addEmail(ce);
 //			assertNull(example,result);
-			
+//			assertEquals(test8.isContact(, "test@gmail.com")
+			String example = "test@gmail.com";
+			String result = test8.addContact(example);
+			assertEquals(example, result);
 			assertEquals(test8.isContact("test@gmail.com"), true);
+			assertEquals(test8.isContact("[]@gmail.com"), false);
 		}
 
 		@Test
