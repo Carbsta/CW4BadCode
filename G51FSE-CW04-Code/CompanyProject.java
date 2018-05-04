@@ -93,6 +93,7 @@ public class CompanyProject {
             return false;
         } else {
         	ProjectPhase++; // Moved the ProjectPhase incrementer down to the else statement so it doesnt move it on when it shouldnt - Jacob
+        	ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();//Need to initialise the array of company emails when moving into a new phase. Tom.
             return true;
         }
     }
@@ -100,7 +101,7 @@ public class CompanyProject {
     public String getPhaseByName() {
     	return CompanyEmailSystem.ProjectPhases[ProjectPhase]; 
     	
-    }
+    }       
     
     public int getPhaseByID() {
         return ProjectPhase; 

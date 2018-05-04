@@ -170,7 +170,7 @@ public class CompanyEmailSystemTest {
 
 // End of section 2 and 3
 		
-// Tom starts tests on section 4 and 5 here.
+// Tom starts tests on section 4 here.
 		
 		//section 4
 		
@@ -184,8 +184,48 @@ public class CompanyEmailSystemTest {
 			
 		}
 		
+	
 		
 // End of sections 4 and 5.
+		
+// Liam starts tests on section 5 here.
+		
+		//Section 5
+		
+		@Test
+		 public void testNoPreviousPhases() {
+			 String input = "X";
+			 InputStream in = new ByteArrayInputStream(input.getBytes());
+			 System.setIn(in);
+			 CompanyEmailSystem ces = new CompanyEmailSystem();
+			/* String phase1 = "1) Feasibility - 0 Emails\n";
+			 String phase12 = "[Phase changed: test [Design]";
+			 String phase2 = "2) Design - 0 Emails\n";
+			 String phase23 = "[Phase changed: test [Implementation]";
+			 String phase3 = "3) Implementation - 0 Emails\n";
+			 String phase34 = "[Phase changed: test [Testing]";
+			 String phase4 = "4) Testing - 0 Emails\n";
+			 String phase45 = "[Phase changed: test [Deployment]";
+			 String phase5 = "5) Deployment - 0 Emails\n";
+			 String phase56 = "[Phase changed: test [Completed]";
+			 String phase6 = "6) Completed - 0 Emails\n";*/
+			 
+			 String output = "1) Feasibility - 0 Emails\n" + "2) Design - 0 Emails\n" + "3) Implementation - 0 Emails\n";
+				
+			 CompanyProject test = new CompanyProject(ces, "test");
+				
+		 	 ces.AddProject(test);
+			 test.nextPhase();
+			 test.nextPhase();
+				
+			 outContent = new ByteArrayOutputStream();
+			 System.setOut(new PrintStream(outContent));
+				
+			 ces.ListPhases(1);
+			 assertEquals(output,outContent.toString());
+		}
+		
+		
 		
 // ========== Jacob started here ==========
 	
@@ -199,7 +239,7 @@ public class CompanyEmailSystemTest {
 			System.setOut(new PrintStream(outContent));
 			
 			String should = "1) me0@me.com\n" + "2) me3@me.com\n" + "3) me6@me.com\n" + "4) me9@me.com\n";
-			testCES.ListContacts(0);
+			testCES.ListContacts(1);
 			assertEquals(should,outContent.toString());
 
 		}
@@ -277,10 +317,6 @@ public class CompanyEmailSystemTest {
 		 public void testNextPhaseSuc() {
 			outContent = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(outContent));
-			
-			String input = "X";
-			InputStream in = new ByteArrayInputStream(input.getBytes());
-			System.setIn(in);
 			
 			
 			String should = "[Phase changed: Proj1 [Design]\n";
