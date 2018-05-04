@@ -166,7 +166,15 @@ public class CompanyEmailSystemTest {
 		}
 		
 // Chris and Audrey start their tests for section 2 and 3 here.
-		
+		@Test
+		public void testListProject() {
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			
+			testCES.ListProjects();
+			assertEquals("1) Proj1 [Feasibility] - 4emails\r\n" + "2) Proj2 [Feasibility] - 3emails\r\n" + "3) Proj3 [Feasibility] - 3emails\r\n", outContent.toString());
+			
+		}
 
 // End of section 2 and 3
 		

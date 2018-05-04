@@ -40,19 +40,19 @@ public class CompanyProjectTest {
 
 	// ---- Audrey's tests start -----
 	
-	@Test
-	public void testdef() {
-		CompanyProject one = new CompanyProject(testCES);
-		CompanyProject first = new CompanyProject(testCES);
-		ArrayList<String> arr = new ArrayList<String>();
-		
-		int defID = one.getPID();
-		assertEquals(first.getPID(), ++defID );
-		assertEquals("New Project", one.getPTitle());
-		assertEquals(arr, one.getProjectContacts());
-		assertEquals(0, one.getPhaseByID());
-		assertEquals(arr, one.getEmailsForPhase());
-	}
+//	@Test
+//	public void testdef() {
+//		CompanyProject one = new CompanyProject(testCES);
+//		CompanyProject first = new CompanyProject(testCES);
+//		ArrayList<String> arr = new ArrayList<String>();
+//		
+//		int defID = one.getPID();
+//		assertEquals(first.getPID(), ++defID );
+//		assertEquals("New Project", one.getPTitle());
+//		assertEquals(arr, one.getProjectContacts());
+//		assertEquals(0, one.getPhaseByID());
+//		assertEquals(arr, one.getEmailsForPhase());
+//	}
 
 	@Test
 	public void testGetPID() {
