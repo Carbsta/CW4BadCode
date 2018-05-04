@@ -89,10 +89,10 @@ public class CompanyProject {
     }
     
     public boolean nextPhase() {
-        ProjectPhase++;
-        if (ProjectPhase > CompanyEmailSystem.ProjectPhases.length) {
+        if (ProjectPhase >= CompanyEmailSystem.ProjectPhases.length-1) { // Changed this to >=  and also subtracted 1, so it catches 5 out as it is the last phase from an array out- Jacob
             return false;
         } else {
+        	ProjectPhase++; // Moved the ProjectPhase incrementer down to the else statement so it doesnt move it on when it shouldnt - Jacob
             return true;
         }
     }

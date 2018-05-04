@@ -288,7 +288,42 @@ public class CompanyEmailSystemTest {
 			
 			outContent = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(outContent));
+			
 			testCES.ChangeProjectPhase(1);
+			assertEquals(should,outContent.toString());
+
+		}
+		
+		//3.8.1
+		@Test
+		 public void testNextPhaseLast() {
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			
+			String input = "X";
+			InputStream in = new ByteArrayInputStream(input.getBytes());
+			System.setIn(in);
+			CompanyEmailSystem ces = new CompanyEmailSystem();
+			
+			String should = "Project already in last phase.\n";
+			
+			
+			
+			CompanyProject last = new CompanyProject(ces, "last");
+			
+			ces.AddProject(last);
+			
+			last.nextPhase();
+			last.nextPhase();
+			last.nextPhase();
+			last.nextPhase();
+			last.nextPhase();
+			
+			
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			
+			ces.ChangeProjectPhase(1);
 			assertEquals(should,outContent.toString());
 
 		}
