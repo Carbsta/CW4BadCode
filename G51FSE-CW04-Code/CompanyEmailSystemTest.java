@@ -176,6 +176,27 @@ public class CompanyEmailSystemTest {
 			
 		}
 
+		
+		
+// Section 3
+		
+		@Test
+		public void testAddProject() {
+		outContent = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(outContent));
+		String input = "A";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		System.out.print("What is the title of the project.\n");
+		assertEquals("What is the title of the project.\n",outContent.toString());
+		
+		
+		}
+		
+		
+		
+		
+		
 // End of section 2 and 3
 		
 // Tom starts tests on section 4 here.
